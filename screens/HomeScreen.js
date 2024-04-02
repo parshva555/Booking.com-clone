@@ -1,42 +1,69 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React, { useLayoutEffect } from 'react'
-import { useNavigation } from '@react-navigation/native'
+import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import React, { useLayoutEffect } from "react";
+import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
-import Header from '../components/Header';
+import Header from "../components/Header";
+import { Feather } from '@expo/vector-icons';
+
 const HomeScreen = () => {
   const navigation = useNavigation();
-  useLayoutEffect(()=> {
+  useLayoutEffect(() => {
     navigation.setOptions({
-      headerShown:true,
-      title:"Booking.com",
-      headerTitleStyle:{
-        fontSize:20,
-        fontWeight: 'bold',
-        color:'white',
-        marginLeft:100
+      headerShown: true,
+      title: "Booking.com",
+      headerTitleStyle: {
+        fontSize: 20,
+        fontWeight: "bold",
+        color: "white",
+        marginLeft: 100,
       },
-      headerStyle:{
-        backgroundColor:'#003580',
-        height:110,
+      headerStyle: {
+        backgroundColor: "#003580",
+        height: 110,
+        borderBottomColor:'transparent',
+        shadowColor:'transparent',
       },
-      headerRight:()=> (
+      headerRight: () => (
         <Ionicons
-                  name="notifications-outline"
-                  size={24}
-                  color="white"
-                  style={{marginRight:12}}
-                  
-                />
-      )
-    })
-  },[])
+          name="notifications-outline"
+          size={24}
+          color="white"
+          style={{ marginRight: 12 }}
+        />
+      ),
+    });
+  }, []);
   return (
     <View>
-      <Header/>
+      <Header />
+      <ScrollView>
+        <View style={{margin:20,borderColor:"#FFC72C",borderWidth:3,borderRadius:6}}>
+          {/* Destination */}
+          <Pressable style={{flexDirection: "row",alignItems: "center",gap: 10,paddingHorizontal:10,borderColor:"#FFC72C",borderWidth:2,paddingVertical:15}}>
+          <Feather name="search" size={24} color="black" />
+          <TextInput placeholder="Enter your Destination"/>
+          </Pressable>
+
+          {/* Selected Dates */}
+          <Pressable>
+
+          </Pressable>
+
+          {/* Rooms and Guests */}
+          <Pressable>
+
+          </Pressable>
+
+          {/* Search Button */}
+          <Pressable>
+
+          </Pressable>
+        </View>
+      </ScrollView>
     </View>
-  )
-}
+  );
+};
 
-export default HomeScreen
+export default HomeScreen;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});
