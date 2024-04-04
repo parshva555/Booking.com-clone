@@ -155,7 +155,7 @@ const HomeScreen = () => {
 
             {/* Rooms and Guests */}
             <Pressable
-            onPress={() => setModalVisible(!modalVisible)}
+              onPress={() => setModalVisible(!modalVisible)}
               style={{
                 flexDirection: "row",
                 alignItems: "center",
@@ -208,7 +208,7 @@ const HomeScreen = () => {
               text="Apply"
               style={{
                 marginBottom: 20,
-                color:"white",
+                color: "white",
                 backgroundColor: "#003580",
               }}
               onPress={() => setModalVisible(!modalVisible)}
@@ -224,13 +224,179 @@ const HomeScreen = () => {
         onHardwareBackPress={() => setModalVisible(!modalVisible)}
         visible={modalVisible}
         onTouchOutside={() => setModalVisible(!modalVisible)}
-      > 
-      <ModalContent style={{
-        width:'100%',
-        height:310,
-      }}>
-
-      </ModalContent>
+      >
+        <ModalContent
+          style={{
+            width: "100%",
+            height: 310,
+          }}
+        >
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <Text style={{fontSize:16,fontWeight:500}}>Rooms</Text>
+            <Pressable
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                gap: 10,
+                marginVertical: 15,
+              }}
+            >
+              <Pressable
+                style={{
+                  width: 26,
+                  height: 26,
+                  borderRadius: 13,
+                  borderColor: "#BEBEBE",
+                  backgroundColor: "#E0E0E0",
+                }}
+              >
+                <Text
+                  style={{
+                    textAlign: "center",
+                    fontSize: 17,
+                    fontWeight: 600,
+                    paddingHorizontal: 6,
+                  }}
+                >
+                  -
+                </Text>
+              </Pressable>
+              <Pressable>
+                <Text>{rooms}</Text>
+              </Pressable>
+              <Pressable style={{
+                  width: 26,
+                  height: 26,
+                  borderRadius: 13,
+                  borderColor: "#BEBEBE",
+                  backgroundColor: "#E0E0e0",
+                }}>
+                <Text style={{
+                    textAlign: "center",
+                    fontSize: 17,
+                    fontWeight: 500,
+                    paddingHorizontal: 6,
+                  }}>+</Text>
+              </Pressable>
+            </Pressable>
+          </View>
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <Text style={{fontSize:16,fontWeight:500}}>Adults</Text>
+            <Pressable
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                gap: 10,
+                marginVertical: 15,
+              }}
+            >
+              <Pressable
+                style={{
+                  width: 26,
+                  height: 26,
+                  borderRadius: 13,
+                  borderColor: "#BEBEBE",
+                  backgroundColor: "#E0E0E0",
+                }}
+              >
+                <Text
+                  style={{
+                    textAlign: "center",
+                    fontSize: 17,
+                    fontWeight: 600,
+                    paddingHorizontal: 6,
+                  }}
+                >
+                  -
+                </Text>
+              </Pressable>
+              <Pressable>
+                <Text>{adults}</Text>
+              </Pressable>
+              <Pressable style={{
+                  width: 26,
+                  height: 26,
+                  borderRadius: 13,
+                  borderColor: "#BEBEBE",
+                  backgroundColor: "#E0E0e0",
+                }}>
+                <Text style={{
+                    textAlign: "center",
+                    fontSize: 17,
+                    fontWeight: 500,
+                    paddingHorizontal: 6,
+                  }}>+</Text>
+              </Pressable>
+            </Pressable>
+          </View>
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <Text style={{fontSize:16,fontWeight:500}}>Children</Text>
+            <Pressable
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                gap: 10,
+                marginVertical: 15,
+              }}
+            >
+              <Pressable
+                style={{
+                  width: 26,
+                  height: 26,
+                  borderRadius: 13,
+                  borderColor: "#BEBEBE",
+                  backgroundColor: "#E0E0E0",
+                }}
+              >
+                <Text
+                  style={{
+                    textAlign: "center",
+                    fontSize: 17,
+                    fontWeight: 600,
+                    paddingHorizontal: 6,
+                  }}
+                >
+                  -
+                </Text>
+              </Pressable>
+              <Pressable>
+                <Text>{children}</Text>
+              </Pressable>
+              <Pressable style={{
+                  width: 26,
+                  height: 26,
+                  borderRadius: 13,
+                  borderColor: "#BEBEBE",
+                  backgroundColor: "#E0E0e0",
+                }}>
+                <Text style={{
+                    textAlign: "center",
+                    fontSize: 17,
+                    fontWeight: 500,
+                    paddingHorizontal: 6,
+                  }}>+</Text>
+              </Pressable>
+            </Pressable>
+          </View>
+        </ModalContent>
       </BottomModal>
     </>
   );
