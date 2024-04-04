@@ -169,7 +169,7 @@ const HomeScreen = () => {
               <Ionicons name="person-outline" size={24} color="black" />
               <TextInput
                 placeholderTextColor="red"
-                placeholder="1 room - 2 Adults - 0 Children"
+                placeholder={`${rooms} Room - ${adults} Adults - ${children} Children`}
               />
             </Pressable>
 
@@ -248,6 +248,7 @@ const HomeScreen = () => {
               }}
             >
               <Pressable
+              onPress={() => setRooms(Math.max(1,rooms-1))}
                 style={{
                   width: 26,
                   height: 26,
@@ -270,7 +271,9 @@ const HomeScreen = () => {
               <Pressable>
                 <Text>{rooms}</Text>
               </Pressable>
-              <Pressable style={{
+              <Pressable 
+              onPress={() => setRooms((c) => c+1)}
+              style={{
                   width: 26,
                   height: 26,
                   borderRadius: 13,
@@ -303,6 +306,7 @@ const HomeScreen = () => {
               }}
             >
               <Pressable
+              onPress={() => setAdults(Math.max(1,adults-1))}
                 style={{
                   width: 26,
                   height: 26,
@@ -325,7 +329,9 @@ const HomeScreen = () => {
               <Pressable>
                 <Text>{adults}</Text>
               </Pressable>
-              <Pressable style={{
+              <Pressable 
+              onPress={()=>setAdults((c) => c+1)}
+              style={{
                   width: 26,
                   height: 26,
                   borderRadius: 13,
@@ -358,6 +364,7 @@ const HomeScreen = () => {
               }}
             >
               <Pressable
+              onPress={() => setChildren(Math.max(0,children-1))}
                 style={{
                   width: 26,
                   height: 26,
@@ -380,7 +387,8 @@ const HomeScreen = () => {
               <Pressable>
                 <Text>{children}</Text>
               </Pressable>
-              <Pressable style={{
+              <Pressable onPress={()=>setChildren((c) => c+1)}
+               style={{
                   width: 26,
                   height: 26,
                   borderRadius: 13,
