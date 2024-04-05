@@ -40,7 +40,7 @@ const HomeScreen = () => {
         fontSize: 20,
         fontWeight: "bold",
         color: "white",
-        marginLeft: 100,
+        marginLeft: 130,
       },
       headerStyle: {
         backgroundColor: "#003580",
@@ -88,6 +88,7 @@ const HomeScreen = () => {
           >
             {/* Destination */}
             <Pressable
+            onPress={()=>navigation.navigate("Search")}
               style={{
                 flexDirection: "row",
                 alignItems: "center",
@@ -149,7 +150,7 @@ const HomeScreen = () => {
                   setSelectedDates(startDate, endDate)
                 }
                 allowFontScaling={false}
-                placeholder={"April 27, 2021 ->  April 28, 2021"}
+                placeholder={"Select Your Dates"}
                 mode={"range"}
               />
             </Pressable>
@@ -204,7 +205,7 @@ const HomeScreen = () => {
             <Text style={{color:'white',fontSize:15,fontWeight:"bold",marginVertical:7}}>Genius</Text>
             <Text style={{color:'white',fontSize:15,fontWeight:500}}>You are at Genius Level one in our Loyalty Program</Text>
           </Pressable>
-          <Pressable style={{width:200,height:150,marginTop:10,borderColor:'#e0e0e0',borderWidth:2, borderRadius:10,padding:20,marginHorizontal:20}}>
+          <Pressable style={{width:200,height:150,marginTop:10,borderColor:'#e0e0e0',borderWidth:2, borderRadius:10,padding:20,marginHorizontal:10}}>
             <Text style={{fontSize:15,fontWeight:"bold",marginVertical:7}}>15% Discounts</Text>
             <Text style={{fontSize:15,fontWeight:500}}>Complete 5 Stays to unlock level 2</Text>
           </Pressable>
