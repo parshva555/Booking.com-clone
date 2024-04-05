@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, SafeAreaView, TextInput } from "react-native";
 import React, { useState } from "react";
 import { Feather } from "@expo/vector-icons";
+import SearchResults from "../components/SearchResults";
 const SearchScreen = () => {
     const [input,setInput] = useState("")
     const data = [
@@ -482,6 +483,7 @@ const SearchScreen = () => {
         <TextInput value={input} onChangeText={(text) => setInput(text)} placeholder="Enter Your Destination" />
         <Feather name="search" size={22} color="black" />
       </View>
+      <SearchResults data={data} input={input} setInput={setInput}/>
     </SafeAreaView>
   );
 };
