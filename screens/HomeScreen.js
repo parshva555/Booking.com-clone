@@ -40,7 +40,7 @@ const HomeScreen = () => {
         fontSize: 20,
         fontWeight: "bold",
         color: "white",
-        marginLeft: 130,
+        marginLeft: 115,
       },
       headerStyle: {
         backgroundColor: "#003580",
