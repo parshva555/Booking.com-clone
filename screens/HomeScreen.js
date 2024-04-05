@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { useState } from "react";
 import React, { useLayoutEffect } from "react";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation,useRoute } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import Header from "../components/Header";
 import { Feather } from "@expo/vector-icons";
@@ -27,11 +27,11 @@ import {
 const HomeScreen = () => {
   const navigation = useNavigation();
   const [selectedDates, setSelectedDates] = useState();
+  const route = useRoute()
   const [rooms, setRooms] = useState(1);
   const [adults, setAdults] = useState(2);
   const [children, setChildren] = useState(0);
   const [modalVisible, setModalVisible] = useState(false);
-  console.log(selectedDates);
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: true,
@@ -72,6 +72,7 @@ const HomeScreen = () => {
       />
     );
   };
+  console.log(route.params)
 
   return (
     <>
