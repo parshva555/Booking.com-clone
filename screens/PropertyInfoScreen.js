@@ -222,7 +222,18 @@ const PropertyInfoScreen = () => {
           }}
         />
         <Amenities/>
+        <Text
+          style={{
+            borderColor: "#e0e0e0",
+            borderWidth: 3,
+            height: 1,
+            marginTop: 15,
+          }}
+        />
       </ScrollView>
+      <Pressable style={{backgroundColor:'#6cb4ee',position:'absolute',bottom:15,padding:13,width:'95%',marginHorizontal:10}}>
+        <Text style={{textAlign:'center',color:'white'}}>Select Availability</Text>
+      </Pressable>
     </SafeAreaView>
   );
 };
