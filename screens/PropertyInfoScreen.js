@@ -33,6 +33,8 @@ const PropertyInfoScreen = () => {
       },
     });
   }, []);
+  const difference = route.params.oldPrice - route.params.newPrice;
+  const offerPrice = (Math.abs(difference) / route.params.oldPrice) * 100;
   return (
     <SafeAreaView>
       <ScrollView>
@@ -67,7 +69,7 @@ const PropertyInfoScreen = () => {
           }}
         >
           <View>
-            <Text style={{ fontSize: 25, fontWeight: "bold" }}>
+            <Text style={{ width: 250, fontSize: 25, fontWeight: "bold" }}>
               {route.params.name}
             </Text>
             <View>
@@ -124,15 +126,22 @@ const PropertyInfoScreen = () => {
             marginTop: 20,
           }}
         />
-        <Text style={{ marginTop: 10, fontSize: 17, fontWeight: 500,marginHorizontal:12 }}>
-            Price for 1 Night and {route.params.adults} adults
-          </Text>
+        <Text
+          style={{
+            marginTop: 10,
+            fontSize: 17,
+            fontWeight: 500,
+            marginHorizontal: 12,
+          }}
+        >
+          Price for 1 Night and {route.params.adults} adults
+        </Text>
         <View
           style={{
             flexDirection: "row",
             alignItems: "center",
-            marginHorizontal:12,
-            marginTop:4,
+            marginHorizontal: 12,
+            marginTop: 4,
             gap: 8,
           }}
         >
@@ -145,9 +154,42 @@ const PropertyInfoScreen = () => {
           >
             {route.params.oldPrice * route.params.adults}
           </Text>
-          <Text style={{ color: "black", fontSize: 20}}>
+          <Text style={{ color: "black", fontSize: 20 }}>
             Rs {route.params.newPrice * route.params.adults}
           </Text>
+        </View>
+        <View
+          style={{
+            marginHorizontal: 12,
+            marginTop: 7,
+            backgroundColor: "green",
+            paddingHorizontal: 4,
+            paddingVertical: 5,
+            width: 75,
+            borderRadius: 5,
+          }}
+        >
+          <Text style={{ textAlign: "center", color: "white" }}>
+            {offerPrice.toFixed(0)} % OFF
+          </Text>
+        </View>
+        <Text
+          style={{
+            borderColor: "#e0e0e0",
+            borderWidth: 3,
+            height: 1,
+            marginTop: 15,
+          }}
+        />
+        <View style={{margin:12,flexDirection:'row',gap:60}}>
+            <View>
+                <Text style={{fontSize:16,fontWeight:600,marginBottom:3}}>Check In</Text>
+                <Text >{route.params.selectedDates.startDate}</Text>
+            </View>
+            <View>
+            <Text style={{fontSize:16,fontWeight:600,marginBottom:3}}>Check Out</Text>
+                <Text>{route.params.selectedDates.endDate}</Text>
+            </View>
         </View>
       </ScrollView>
     </SafeAreaView>
