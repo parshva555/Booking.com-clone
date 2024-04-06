@@ -11,6 +11,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import React, { useLayoutEffect } from "react";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { pixelNormalize } from "../components/Normalise";
+import Amenities from "../components/Amenities";
 
 const PropertyInfoScreen = () => {
   const route = useRoute();
@@ -181,16 +182,46 @@ const PropertyInfoScreen = () => {
             marginTop: 15,
           }}
         />
-        <View style={{margin:12,flexDirection:'row',gap:60}}>
-            <View>
-                <Text style={{fontSize:16,fontWeight:600,marginBottom:3}}>Check In</Text>
-                <Text >{route.params.selectedDates.startDate}</Text>
-            </View>
-            <View>
-            <Text style={{fontSize:16,fontWeight:600,marginBottom:3}}>Check Out</Text>
-                <Text>{route.params.selectedDates.endDate}</Text>
-            </View>
+        <View style={{ margin: 12, flexDirection: "row", gap: 60 }}>
+          <View>
+            <Text style={{ fontSize: 16, fontWeight: 600, marginBottom: 3 }}>
+              Check In
+            </Text>
+            <Text
+              style={{ fontSize: 16, fontWeight: "bold", color: "#007fff" }}
+            >
+              {route.params.selectedDates.startDate}
+            </Text>
+          </View>
+          <View>
+            <Text style={{ fontSize: 16, fontWeight: 600, marginBottom: 3 }}>
+              Check Out
+            </Text>
+            <Text
+              style={{ fontSize: 16, fontWeight: "bold", color: "#007fff" }}
+            >
+              {route.params.selectedDates.endDate}
+            </Text>
+          </View>
         </View>
+        <View style={{ margin: 12 }}>
+          <Text style={{ fontSize: 16, fontWeight: 600, marginBottom: 3 }}>
+            Rooms and Guests
+          </Text>
+          <Text style={{ fontSize: 16, fontWeight: "bold", color: "#007fff" }}>
+            {route.params.rooms} rooms {route.params.adults} adults{" "}
+            {route.params.children} children
+          </Text>
+        </View>
+        <Text
+          style={{
+            borderColor: "#e0e0e0",
+            borderWidth: 3,
+            height: 1,
+            marginTop: 15,
+          }}
+        />
+        <Amenities/>
       </ScrollView>
     </SafeAreaView>
   );
