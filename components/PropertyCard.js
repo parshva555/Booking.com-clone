@@ -62,7 +62,7 @@ const PropertyCard = ({
                 marginTop: 5,
               }}
             >
-              <MaterialIcons name="stars" size={24} color="black" />
+              <MaterialIcons name="stars" size={24} color="green" />
               <Text>{property.rating}</Text>
               <View
                 style={{
