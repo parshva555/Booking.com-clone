@@ -221,18 +221,40 @@ const PropertyInfoScreen = () => {
             marginTop: 15,
           }}
         />
-        <Amenities/>
+        <Amenities />
         <Text
           style={{
             borderColor: "#e0e0e0",
             borderWidth: 3,
             height: 1,
-            marginTop: 15,
+            marginTop: 155,
           }}
         />
       </ScrollView>
-      <Pressable style={{backgroundColor:'#6cb4ee',position:'absolute',bottom:15,padding:13,width:'95%',marginHorizontal:10}}>
-        <Text style={{textAlign:'center',color:'white'}}>Select Availability</Text>
+      <Pressable
+      onPress={()=> navigation.navigate("Rooms",{
+        rooms:route.params.availableRooms,
+        oldPrice:route.params.oldPrice,
+        newPrice:route.params.newPrice,
+        name:route.params.name,
+        children:route.params.children,
+        adults:route.params.adults,
+        rating:route.params.rating,
+        startDate:route.params.selectedDates.startDate,
+        endDate:route.params.selectedDates.endDate
+      })}
+        style={{
+          backgroundColor: "#6cb4ee",
+          position: "absolute",
+          bottom: 15,
+          padding: 13,
+          width: "95%",
+          marginHorizontal: 10,
+        }}
+      >
+        <Text style={{ textAlign: "center", color: "white",fontWeight:"bold",fontSize:17 }}>
+          Select Availability
+        </Text>
       </Pressable>
     </SafeAreaView>
   );
