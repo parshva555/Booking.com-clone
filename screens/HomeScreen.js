@@ -24,6 +24,7 @@ import {
   ModalTitle,
   SlideAnimation,
 } from "react-native-modals";
+import { setEnabled } from "react-native/Libraries/Performance/Systrace";
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -84,6 +85,15 @@ const HomeScreen = () => {
         },
         {text: 'OK', onPress: () => console.log('OK Pressed')},
       ]);
+    }
+    if(route.params && selectedDates){
+      navigation.navigate("Places",{
+        rooms:rooms,
+        adults:adults,
+        children:children,
+        selectedDates:selectedDates,
+        place:place
+      })
     }
   }
   return (
