@@ -15,6 +15,7 @@ import {
   ModalTitle,
   SlideAnimation,
 } from "react-native-modals";
+import SearchResults from "../components/SearchResults";
 const PlacesScreen = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [selectFilter, setSelectedFilter] = useState([]);
@@ -306,6 +307,7 @@ const PlacesScreen = () => {
         {
           id: "20",
           name: "FabExpress Airport Stay Inn",
+          image:"https://cf.bstatic.com/xdata/images/hotel/max1280x900/433845616.jpg?k=87bc315f35830189d9a1c935c3e167e648543c27f39ee4cafc5cf73ee24393b9&o=&hp=1",
           rating: 3.5,
           address:
             "CFC-4/C, Road No-2 Hardware Park, Beside TCS, Tukkuguda, 501351 Hyderabad, India",
@@ -393,6 +395,7 @@ const PlacesScreen = () => {
         {
           id: "22",
           name: "Olive Service Apartments",
+          image:"https://cf.bstatic.com/xdata/images/hotel/max1280x900/433845616.jpg?k=87bc315f35830189d9a1c935c3e167e648543c27f39ee4cafc5cf73ee24393b9&o=&hp=1",
           rating: 4.5,
           address:
             "Plot 73, Shilpi Valley, Gafoor Nagar, Madhapur, Opp Hitech City Mindspace, Hyderabad",
@@ -572,7 +575,9 @@ const PlacesScreen = () => {
             Filter
           </Text>
         </Pressable>
-        <Pressable style={{ flexDirection: "row", alignItems: "center" }}>
+        <Pressable onPress={() => navigation.navigate("Map",{
+          searchResults:searchPlaces
+        })} style={{ flexDirection: "row", alignItems: "center" }}>
           <Fontisto name="map-marker-alt" size={22} color="gray" />
           <Text style={{ fontSize: 15, fontWeight: 500, marginLeft: 8 }}>
             Map
