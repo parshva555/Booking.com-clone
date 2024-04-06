@@ -7,6 +7,7 @@ import {
   Text,
   TextInput,
   View,
+  Alert
 } from "react-native";
 import { useState } from "react";
 import React, { useLayoutEffect } from "react";
@@ -73,7 +74,18 @@ const HomeScreen = () => {
     );
   };
   console.log(route.params)
-
+  const searchPlaces = (place) => {
+    if(!route.params || !selectedDates){
+      Alert.alert('Invalid Details', 'Please enter all the details', [
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () => console.log('OK Pressed')},
+      ]);
+    }
+  }
   return (
     <>
       <View>
@@ -102,7 +114,7 @@ const HomeScreen = () => {
             >
               <Feather name="search" size={24} color="black" />
               <TextInput
-                placeholder="Enter your Destination"
+                placeholder={route?.params ? route.params.input : "Enter your Destination"}
                 placeholderTextColor="black"
               />
             </Pressable>
@@ -178,6 +190,7 @@ const HomeScreen = () => {
 
             {/* Search Button */}
             <Pressable
+            onPress={() => searchPlaces(route?.params.input)}
               style={{
                 paddingHorizontal: 10,
                 borderColor: "#FFC72C",
