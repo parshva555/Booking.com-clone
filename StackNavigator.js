@@ -17,6 +17,7 @@ import RoomsScreen from "./screens/RoomsScreen";
 import PropertyInfoScreen from "./screens/PropertyInfoScreen";
 import UserScreen from "./screens/UserScreen";
 import ConfirmationScreen from "./screens/ConfirmationScreen";
+import LoginScreen from "./screens/LoginScreen";
 const StackNavigator = () => {
   const Tab = createBottomTabNavigator();
   const Stack = createNativeStackNavigator();
@@ -92,6 +93,7 @@ const StackNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen name="Login" component={LoginScreen} options={{headerShown:false}} />
         <Stack.Screen name="Main" component={BottomTabs} options={{headerShown:false}} />
         <Stack.Screen name="Search" component={SearchScreen} options={{headerShown:false}} />
         <Stack.Screen name="Places" component={PlacesScreen} />
