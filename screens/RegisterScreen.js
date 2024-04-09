@@ -1,41 +1,52 @@
-import { StyleSheet, Text, View ,SafeAreaView,KeyboardAvoidingView,Pressable,TextInput, Alert} from 'react-native'
-import React ,{useState} from 'react'
-import { useNavigation } from '@react-navigation/native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  KeyboardAvoidingView,
+  Pressable,
+  TextInput,
+  Alert,
+} from "react-native";
+import React, { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 
 const RegisterScreen = () => {
-    const [email,setEmail] = useState("");
-    const [password,setPassword] = useState("");
-    const [phone,setPhone] = useState("");
-    const navigation = useNavigation();
-    const register = () => {
-        if(email === "" || password === "" || phone === "" ){
-            Alert.alert(
-                "Invalid Detials",
-                "Please enter all the credentials",
-                [
-                  {
-                    text: "Cancel",
-                    onPress: () => console.log("Cancel Pressed"),
-                    style: "cancel"
-                  },
-                  { text: "OK", onPress: () => console.log("OK Pressed") }
-                ],
-                { cancelable: false }
-              );
-        }
-        if(email && password && phone){
-            console.log("Main")
-            return navigation.navigate("Main")
-        }
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const navigation = useNavigation();
+  const register = () => {
+    if (email === "" || password === "" || phone === "") {
+      Alert.alert(
+        "Invalid Detials",
+        "Please enter all the credentials",
+        [
+          {
+            text: "Cancel",
+            onPress: () => console.log("Cancel Pressed"),
+            style: "cancel",
+          },
+          { text: "OK", onPress: () => console.log("OK Pressed") },
+        ],
+        { cancelable: false }
+      );
     }
+    if (email && password && phone) {
+      console.log("Main");
+      return navigation.navigate("Main");
+    }
+  };
   return (
-<SafeAreaView  style={{
+    <SafeAreaView
+      style={{
         flex: 1,
         backgroundColor: "white",
         padding: 10,
         alignItems: "center",
-      }}>
-    <KeyboardAvoidingView>
+      }}
+    >
+      <KeyboardAvoidingView>
         <View
           style={{
             justifyContent: "center",
@@ -48,7 +59,7 @@ const RegisterScreen = () => {
           </Text>
 
           <Text style={{ marginTop: 15, fontSize: 18, fontWeight: "500" }}>
-           Create an Account
+            Create an Account
           </Text>
         </View>
 
@@ -61,7 +72,7 @@ const RegisterScreen = () => {
             <TextInput
               value={email}
               onChangeText={(text) => setEmail(text)}
-              placeholder="enter your email id"
+              placeholder="Enter your email id"
               placeholderTextColor={"black"}
               style={{
                 fontSize: email ? 18 : 18,
@@ -102,7 +113,7 @@ const RegisterScreen = () => {
             <TextInput
               value={phone}
               onChangeText={(text) => setPhone(text)}
-              placeholder="enter your Phone No"
+              placeholder="Enter your Phone No"
               placeholderTextColor={"black"}
               style={{
                 fontSize: password ? 18 : 18,
@@ -116,7 +127,7 @@ const RegisterScreen = () => {
         </View>
 
         <Pressable
-        onPress={register}
+          onPress={register}
           style={{
             width: 200,
             backgroundColor: "#003580",
@@ -127,17 +138,31 @@ const RegisterScreen = () => {
             marginRight: "auto",
           }}
         >
-          <Text style={{textAlign:"center",color:"white",fontSize:17,fontWeight:"bold"}}>Register</Text>
+          <Text
+            style={{
+              textAlign: "center",
+              color: "white",
+              fontSize: 17,
+              fontWeight: "bold",
+            }}
+          >
+            Register
+          </Text>
         </Pressable>
 
-        <Pressable onPress={() => navigation.goBack()} style={{marginTop:20}}>
-            <Text style={{textAlign:"center",color:"gray",fontSize:17}}>Already have an account? Sign In</Text>
+        <Pressable
+          onPress={() => navigation.goBack()}
+          style={{ marginTop: 20 }}
+        >
+          <Text style={{ textAlign: "center", color: "gray", fontSize: 17 }}>
+            Already have an account? Sign In
+          </Text>
         </Pressable>
       </KeyboardAvoidingView>
     </SafeAreaView>
-  )
-}
+  );
+};
 
-export default RegisterScreen
+export default RegisterScreen;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});

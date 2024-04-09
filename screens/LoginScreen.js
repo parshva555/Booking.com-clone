@@ -40,7 +40,7 @@ const LoginScreen = () => {
     <SafeAreaView
       style={{
         flex: 1,
-        backfaceVisibility: "white",
+        backgroundColor: "white",
         padding: 10,
         alignItems: "center",
       }}
@@ -73,7 +73,7 @@ const LoginScreen = () => {
               style={{
                 fontSize: email ? 17 : 17,
                 borderBottomColor: "gray",
-                borderBottomWidth: 8,
+                borderBottomWidth: 1,
                 marginVertical: 10,
                 width: 300,
               }}
@@ -92,7 +92,7 @@ const LoginScreen = () => {
               style={{
                 fontSize: password ? 17 : 17,
                 borderBottomColor: "gray",
-                borderBottomWidth: 8,
+                borderBottomWidth: 1,
                 marginVertical: 10,
                 width: 300,
               }}
