@@ -35,7 +35,7 @@ const UserScreen = () => {
   const finalStep = () => {
     if (!firstName || !lastName || !email || !phoneNo) {
       Alert.alert(
-        "Invalide Details",
+        "Invalid Details",
         "Please enter all the fields",
         [
           {
