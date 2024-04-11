@@ -18,135 +18,59 @@ const RegisterScreen = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setlastName] = useState("");
   const navigation = useNavigation();
-  // const register = async () => {
-  //   if (
-  //     email === "" ||
-  //     password === "" ||
-  //     firstName === "" ||
-  //     lastName === ""
-  //   ) {
-  //     Alert.alert(
-  //       "Invalid Details",
-  //       "Please enter all the credentials",
-  //       [
-  //         {
-  //           text: "OK",
-  //           onPress: () => console.log("OK Pressed"),
-  //         },
-  //       ],
-  //       { cancelable: false }
-  //     );
-  //     try {
-  //       const formData = {
-  //         firstName: firstName,
-  //         lastName: lastName,
-  //         password: password,
-  //         email: email,
-  //       };
-  //       const response = await axios.post(
-  //         "http://192.168.1.9:7000/api/users/register",
-  //         formData,
-  //         {
-  //           headers: {
-  //             "content-type": "application/json",
-  //           },
-  //         }
-  //       );
-  //       console.log(response.data); // Assuming the response contains a message property
-  //       return response.data.message;
-  //     } catch (error) {
-  //       console.error("Axios error:", error); // Log the full error object
-  //       Alert.alert(
-  //         "Registration Failed",
-  //         `An error occurred while registering: ${error.message}`, // Display a user-friendly error message
-  //         [
-  //           {
-  //             text: "OK",
-  //             onPress: () => console.log("OK Pressed"),
-  //           },
-  //         ],
-  //         { cancelable: false }
-  //       );
-  //     }
-  //     return; // Exit the function early if any field is empty
-  //   }
-  // };
   const register = async () => {
-    // if (
-    //   email === "" ||
-    //   password === "" ||
-    //   firstName === "" ||
-    //   lastName === ""
-    // ) {
-    //   Alert.alert(
-    //     "Invalid Details",
-    //     "Please enter all the credentials",
-    //     [
-    //       {
-    //         text: "OK",
-    //         onPress: () => console.log("OK Pressed"),
-    //       },
-    //     ],
-    //     { cancelable: false }
-    //   );
-    //   return;
-    // }
-
-    // try {
-    //   const formData = {
-    //     firstName: firstName,
-    //     lastName: lastName,
-    //     email: email,
-    //     password: password
-    //   };
-
-    //   const response = await axios.post(
-    //     "http://192.168.1.9:7000/api/users/register",
-    //     formData,
-    //     {
-    //       headers: {
-    //         "content-type": "application/json",
-    //       },
-    //     }
-    //   );
-
-    //   console.log(response.data); // Assuming the response contains a message property
-    //   return response.data.message;
-    // } catch (error) {
-    //   console.error("Axios error:", error); // Log the full error object
-    //   Alert.alert(
-    //     "Registration Failed",
-    //     `An error occurred while registering: ${error.message}`, // Display a user-friendly error message
-    //     [
-    //       {
-    //         text: "OK",
-    //         onPress: () => console.log("OK Pressed"),
-    //       },
-    //     ],
-    //     { cancelable: false }
-    //   );
-    // }
-    console.log("Hello")
-    const user = {
-      firstName: firstName,
-      lastName:lastName,
-      email: email,
-      password: password,
-      // profileImage: image
+    if (
+      email === "" ||
+      password === "" ||
+      firstName === "" ||
+      lastName === ""
+    ) {
+      Alert.alert(
+        "Invalid Details",
+        "Please enter all the credentials",
+        [
+          {
+            text: "OK",
+            onPress: () => console.log("OK Pressed"),
+          },
+        ],
+        { cancelable: false }
+      );
+      return;
+    } else {
+      try {
+        const formData = {
+          firstName: firstName,
+          lastName: lastName,
+          password: password,
+          email: email,
+        };
+        const response = await axios.post(
+          "http://{your local IP's}:7000/api/users/register",
+          formData,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        console.log(response);
+        return response.data.message;
+      } catch (error) {
+        console.error("Axios error:", error);
+        Alert.alert(
+          "Registration Failed",
+          `An error occurred while registering: ${error.message}`,
+          [
+            {
+              text: "OK",
+              onPress: () => console.log("OK Pressed"),
+            },
+          ],
+          { cancelable: false }
+        );
+      }
     }
-
-    axios.post("http://192.168.56.1:7000/api/users/register",user).then((response)=>{
-      console.log(response);
-      Alert.alert("Registeration Successful","You have been registered successfully");
-      setFirstName("");
-      setlastName("");
-      setEmail("");
-      setPassword("");
-      // setImage("");
-    }).catch((error) => {
-      Alert.alert("Registeration failed","An error occurred while registering");
-      console.log("Registeration failed",error);
-    })
   };
 
   return (

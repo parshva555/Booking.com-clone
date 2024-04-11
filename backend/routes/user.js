@@ -28,7 +28,7 @@ router.post(
       if (user) {
         return res.status(400).json({ success: false, message: "User already exists" });
       }
-
+      console.log("I am running!!!!")
       user = new User(req.body);
       await user.save();
 
