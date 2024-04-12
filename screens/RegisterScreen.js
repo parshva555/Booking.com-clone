@@ -52,7 +52,8 @@ const RegisterScreen = () => {
         );
         console.log("first");
         console.log(response.data);
-        return response.data.message;
+        console.log(response.data.message);
+        return navigation.navigate("Login")
       } catch (error) {
         console.error("error:", error); 
         Alert.alert(

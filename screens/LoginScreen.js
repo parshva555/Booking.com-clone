@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -6,36 +7,56 @@ import {
   KeyboardAvoidingView,
   TextInput,
   Pressable,
-  Alert
+  Alert,
 } from "react-native";
-import {useNavigation} from '@react-navigation/native'
-import React, { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
+import axios from "axios";
 
 const LoginScreen = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState(""); 
+  const [password, setPassword] = useState(""); 
   const navigation = useNavigation();
-  const login = () => {
-    if(email === "" || password === ""  ){
+
+  const login = async () => {
+    if (email === "" || password === "") {
+      Alert.alert(
+        "Invalid Details",
+        "Please enter all the credentials",
+        [
+          {
+            text: "Cancel",
+            onPress: () => console.log("Cancel Pressed"),
+            style: "cancel",
+          },
+          { text: "OK", onPress: () => console.log("OK Pressed") },
+        ],
+        { cancelable: false }
+      );
+    } else {
+      try {
+        const formData = {
+          email: email, 
+          password: password,
+        };
+
+        const response = await axios.post(
+          "https://booking-backend-1-pmsm.onrender.com/api/auth/login",
+          formData
+        );
+        console.log("Login successful:", response.data);
+        return navigation.navigate("Main");
+      } catch (error) {
+        console.error("Login failed:", error);
         Alert.alert(
-            "Invalid Detials",
-            "Please enter all the credentials",
-            [
-              {
-                text: "Cancel",
-                onPress: () => console.log("Cancel Pressed"),
-                style: "cancel"
-              },
-              { text: "OK", onPress: () => console.log("OK Pressed") }
-            ],
-            { cancelable: false }
-          );
+          "Login Failed",
+          `An error occurred while logging in: ${error.message}`,
+          [{ text: "OK", onPress: () => console.log("OK Pressed") }],
+          { cancelable: false }
+        );
+      }
     }
-    if(email && password ){
-        console.log("Main")
-        return navigation.navigate("Main")
-    }
-}
+  };
+
   return (
     <SafeAreaView
       style={{
@@ -60,6 +81,8 @@ const LoginScreen = () => {
             Sign In into your account
           </Text>
         </View>
+
+        {/* Input fields for email and password */}
         <View style={{ marginTop: 50 }}>
           <View>
             <Text style={{ fontSize: 18, fontWeight: 600, color: "gray" }}>
@@ -67,11 +90,11 @@ const LoginScreen = () => {
             </Text>
             <TextInput
               value={email}
-              onChange={(text) => setEmail(text)}
+              onChangeText={setEmail} // Use the setEmail function directly
               placeholder="Enter your email id"
               placeholderTextColor="black"
               style={{
-                fontSize: email ? 17 : 17,
+                fontSize: 17,
                 borderBottomColor: "gray",
                 borderBottomWidth: 1,
                 marginVertical: 10,
@@ -79,18 +102,19 @@ const LoginScreen = () => {
               }}
             />
           </View>
+
           <View style={{ marginTop: 25 }}>
             <Text style={{ fontSize: 18, fontWeight: 600, color: "gray" }}>
               Password
             </Text>
             <TextInput
               value={password}
-              onChangeText={(text) => setPassword(text)}
+              onChangeText={setPassword} // Use the setPassword function directly
               secureTextEntry={true}
               placeholder="Password"
               placeholderTextColor="black"
               style={{
-                fontSize: password ? 17 : 17,
+                fontSize: 17,
                 borderBottomColor: "gray",
                 borderBottomWidth: 1,
                 marginVertical: 10,
@@ -99,8 +123,10 @@ const LoginScreen = () => {
             />
           </View>
         </View>
+
+        {/* Login button */}
         <Pressable
-        onPress={login}
+          onPress={login}
           style={{
             width: 200,
             backgroundColor: "#003580",
@@ -122,8 +148,15 @@ const LoginScreen = () => {
             Login
           </Text>
         </Pressable>
-        <Pressable onPress={() => navigation.navigate("Register")} style={{marginTop:20}}>
-            <Text style={{textAlign:'center',fontSize:16,color:'gray'}}>Dont have an account? Sign Up</Text>
+
+        {/* Navigation to registration screen */}
+        <Pressable
+          onPress={() => navigation.navigate("Register")}
+          style={{ marginTop: 20 }}
+        >
+          <Text style={{ textAlign: "center", fontSize: 16, color: "gray" }}>
+            Don't have an account? Sign Up
+          </Text>
         </Pressable>
       </KeyboardAvoidingView>
     </SafeAreaView>
@@ -131,5 +164,3 @@ const LoginScreen = () => {
 };
 
 export default LoginScreen;
-
-const styles = StyleSheet.create({});
