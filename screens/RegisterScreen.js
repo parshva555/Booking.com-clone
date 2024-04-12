@@ -42,22 +42,19 @@ const RegisterScreen = () => {
         const formData = {
           firstName: firstName,
           lastName: lastName,
-          password: password,
           email: email,
+          password: password,
         };
+
         const response = await axios.post(
-          "http://{your local IP's}:7000/api/users/register",
-          formData,
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
+          "https://booking-backend-1-pmsm.onrender.com/api/users/register",
+          formData
         );
-        console.log(response);
+        console.log("first");
+        console.log(response.data);
         return response.data.message;
       } catch (error) {
-        console.error("Axios error:", error);
+        console.error("error:", error); 
         Alert.alert(
           "Registration Failed",
           `An error occurred while registering: ${error.message}`,
