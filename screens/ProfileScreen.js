@@ -14,7 +14,9 @@ const ProfileScreen = () => {
       throw new Error("Error fetching user details");
     }
 
-    const constructedFullName = `${response.firstName} ${response.lastName}`;
+    const data = await response.json();
+
+    const constructedFullName = `${data.firstName} ${data.lastName}`;
 		setFullName(constructedFullName);
     setEmail(data.email);
   };
