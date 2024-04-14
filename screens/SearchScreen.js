@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, SafeAreaView, TextInput } from "react-native";
 import React, { useState } from "react";
 import { Feather } from "@expo/vector-icons";
 import SearchResults from "../components/SearchResults";
+import axios from "axios";
 const SearchScreen = () => {
     const [input,setInput] = useState("")
     const data = [
@@ -466,6 +467,7 @@ const SearchScreen = () => {
           ],
         },
       ];
+
   return (
     <SafeAreaView style={{ marginTop: 50 }}>
       <View

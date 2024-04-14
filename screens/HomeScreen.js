@@ -24,7 +24,6 @@ import {
   ModalTitle,
   SlideAnimation,
 } from "react-native-modals";
-import { setEnabled } from "react-native/Libraries/Performance/Systrace";
 
 const HomeScreen = () => {
   const navigation = useNavigation();
