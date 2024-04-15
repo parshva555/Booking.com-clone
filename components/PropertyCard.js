@@ -81,18 +81,6 @@ const PropertyCard = ({
               </View>
             </View>
           </View>
-          {/* <Text
-            style={{
-              width: 200,
-              marginTop: 6,
-              color: "gray",
-              fontWeight: "bold",
-            }}
-          >
-            {property.address.length > 50
-              ? property.address.substr(0, 50)
-              : property.address}
-          </Text> */}
           <Text style={{ marginTop: 4, fontSize: 15, fontWeight: 500 }}>
             Price for 1 Night and {adults} adults
           </Text>
@@ -104,25 +92,10 @@ const PropertyCard = ({
               gap: 8,
             }}
           >
-            {/* <Text
-              style={{
-                color: "red",
-                fontSize: 18,
-                textDecorationLine: "line-through",
-              }}
-            >
-              {hotel.pricePerNight * adults}
-            </Text> */}
             <Text style={{ color: "black", fontSize: 18 }}>
               Rs {hotel.pricePerNight * adults}
             </Text>
           </View>
-          {/* <View style={{ marginTop: 6 }}>
-            <Text style={{ fontSize: 16, color: "gray" }}>Deluxe Room</Text>
-            <Text style={{ fontSize: 16, color: "gray" }}>
-              Hotel Room: 1 bed
-            </Text>
-          </View> */}
           <View  style={{
                   backgroundColor: "#6082b6",
                   paddingVertical: 2,

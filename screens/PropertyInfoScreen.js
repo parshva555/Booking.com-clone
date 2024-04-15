@@ -8,7 +8,7 @@ import {
   Image,
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
-import React, { useLayoutEffect } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { pixelNormalize } from "../components/Normalise";
 import Amenities from "../components/Amenities";
@@ -16,6 +16,17 @@ import Amenities from "../components/Amenities";
 const PropertyInfoScreen = () => {
   const route = useRoute();
   const navigation = useNavigation();
+  const [showButton, setShowButton] = useState(false);
+
+  const handleScroll = (event) => {
+    const scrollPosition = event.nativeEvent.contentOffset.y;
+    if (scrollPosition > 60) {
+      setShowButton(true);
+    } else {
+      setShowButton(false);
+    }
+  };
+
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: true,
@@ -34,31 +45,25 @@ const PropertyInfoScreen = () => {
       },
     });
   }, []);
-  const difference = route.params.oldPrice - route.params.newPrice;
-  const offerPrice = (Math.abs(difference) / route.params.oldPrice) * 100;
+
   return (
     <SafeAreaView>
-      <ScrollView>
+      <ScrollView onScroll={handleScroll}>
         <Pressable
-          style={{ flexDirection: "row", flexWrap: "wrap", margin: 10 }}
+          style={{ flexDirection: "row", flexWrap: "wrap", margin: 10, justifyContent: "center" }}
         >
-          {route.params.photos.slice(0, 5).map((photo) => (
-            <View style={{ margin: 5 }}>
+          {route.params.photos.map((photo, index) => (
+            <View key={index} style={{ margin: 5 }}>
               <Image
                 style={{
                   width: 120,
                   height: pixelNormalize(80),
                   borderRadius: pixelNormalize(4),
                 }}
-                source={{ uri: photo.image }}
+                source={{ uri: photo }}
               />
             </View>
           ))}
-          <Pressable style={{ alignItems: "center", justifyContent: "center" }}>
-            <Text style={{ textAlign: "center", marginLeft: 20 }}>
-              Show More
-            </Text>
-          </Pressable>
         </Pressable>
         <View
           style={{
@@ -115,7 +120,7 @@ const PropertyInfoScreen = () => {
             }}
           >
             <Text style={{ color: "white", fontSize: 13 }}>
-              Tranvel Sustainable
+              Travel Sustainable
             </Text>
           </View>
         </View>
@@ -146,17 +151,8 @@ const PropertyInfoScreen = () => {
             gap: 8,
           }}
         >
-          <Text
-            style={{
-              color: "red",
-              fontSize: 20,
-              textDecorationLine: "line-through",
-            }}
-          >
-            {route.params.oldPrice * route.params.adults}
-          </Text>
           <Text style={{ color: "black", fontSize: 20 }}>
-            Rs {route.params.newPrice * route.params.adults}
+            Rs {route.params.price * route.params.adults}
           </Text>
         </View>
         <View
@@ -170,9 +166,6 @@ const PropertyInfoScreen = () => {
             borderRadius: 5,
           }}
         >
-          <Text style={{ textAlign: "center", color: "white" }}>
-            {offerPrice.toFixed(0)} % OFF
-          </Text>
         </View>
         <Text
           style={{
@@ -231,31 +224,34 @@ const PropertyInfoScreen = () => {
           }}
         />
       </ScrollView>
-      <Pressable
-      onPress={()=> navigation.navigate("Rooms",{
-        rooms:route.params.availableRooms,
-        oldPrice:route.params.oldPrice,
-        newPrice:route.params.newPrice,
-        name:route.params.name,
-        children:route.params.children,
-        adults:route.params.adults,
-        rating:route.params.rating,
-        startDate:route.params.selectedDates.startDate,
-        endDate:route.params.selectedDates.endDate
-      })}
-        style={{
-          backgroundColor: "#6cb4ee",
-          position: "absolute",
-          bottom: 15,
-          padding: 13,
-          width: "95%",
-          marginHorizontal: 10,
-        }}
-      >
-        <Text style={{ textAlign: "center", color: "white",fontWeight:"bold",fontSize:17 }}>
-          Select Availability
-        </Text>
-      </Pressable>
+      {showButton && (
+        <Pressable
+          onPress={() =>
+            navigation.navigate("Confirmation", {
+              price: route.params.price,
+              name: route.params.name,
+              children: route.params.children,
+              adults: route.params.adults,
+              rating: route.params.rating,
+              startDate: route.params.selectedDates.startDate,
+              endDate: route.params.selectedDates.endDate,
+            })
+          }
+          style={{
+            backgroundColor: "#6cb4ee",
+            position: "absolute",
+            bottom: 15,
+            padding: 13,
+            width: "95%",
+            marginHorizontal: 10,
+            borderRadius: 10,
+          }}
+        >
+          <Text style={{ textAlign: "center", color: "white", fontWeight: "bold", fontSize: 17 }}>
+            Book Hotel
+          </Text>
+        </Pressable>
+      )}
     </SafeAreaView>
   );
 };

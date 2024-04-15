@@ -7,6 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 const BookingScreen = () => {
   const bookings = useSelector((state) => state.booking.booking);
   const navigation = useNavigation();
+
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: true,
@@ -24,6 +25,7 @@ const BookingScreen = () => {
       },
     });
   }, []);
+
   return (
     <SafeAreaView>
       <ScrollView>
