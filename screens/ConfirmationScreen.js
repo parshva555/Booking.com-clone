@@ -107,11 +107,19 @@ const ConfirmationScreen = () => {
         </View>
         <View style={{ margin: 12 }}>
           <Text style={{ fontSize: 16, fontWeight: 600, marginBottom: 3 }}>
-            Rooms and Guests
+            Guests
           </Text>
           <Text style={{ fontSize: 16, fontWeight: "bold", color: "#007fff" }}>
-            {route.params.availableRooms} rooms {route.params.adults} adults{" "}
+            {route.params.adults} adults{" "}
             {route.params.children} children
+          </Text>
+        </View>
+        <View style={{ margin: 12 }}>
+          <Text style={{ fontSize: 16, fontWeight: 600, marginBottom: 3 }}>
+            Price
+          </Text>
+          <Text style={{ fontSize: 16, fontWeight: "bold", color: "#007fff" }}>
+            Rs. {route.params.price}
           </Text>
         </View>
         <Pressable
