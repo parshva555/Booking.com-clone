@@ -42,14 +42,7 @@ const PlacesScreen = () => {
       filter: "cost:High to Low",
     },
   ];
-  // const fetchHotels = async () => {
-  //   try {
-  //     const response = await axios.get("https://booking-backend-1-pmsm.onrender.com/api/hotels");
-  //     return response.data;
-  //   } catch (error) {
-  //     throw new Error("Error fetching hotels");
-  //   }
-  // };
+
   const fetchHotelsByCity = async (city) => {
     try {
       const response = await axios.get("https://booking-backend-1-pmsm.onrender.com/api/hotels/city", {
@@ -61,16 +54,6 @@ const PlacesScreen = () => {
       throw new Error("Error fetching hotels");
     }
   };
-
-  // const fetchHotelById = async (hotelId) => {
-  //   try {
-  //     const response = await axios.get(`${API_BASE_URL}/api/hotels/${hotelId}`);
-  //     return response.data;
-  //   } catch (error) {
-  //     throw new Error("Error fetching hotel");
-  //   }
-  // };
-  // const [sortedData, setSortedData] = useState(data)
 
   const compare = (a, b) => {
     if (a.newPrice > b.newPrice) {

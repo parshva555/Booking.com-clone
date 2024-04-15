@@ -25,14 +25,12 @@ const PropertyCard = ({
     <View>
       <Pressable onPress={() => navigation.navigate("Info",{
         name:hotel.name,
+        id: hotel._id,
         rating:hotel.starRating,
-        // oldPrice:property.oldPrice,
         price:hotel.pricePerNight,
         photos:hotel.imageUrls,
-        // availableRooms:property.rooms,
         adults:adults,
         children:children,
-        // rooms:rooms,
         selectedDates:selectedDates
       })}
         style={{ flexDirection: "row", margin: 15, backgroundColor: "white" }}

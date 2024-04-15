@@ -2,8 +2,9 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import React, { useLayoutEffect } from "react";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { MaterialIcons } from "@expo/vector-icons";
-import {useDispatch} from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { savedPlaces } from "../SavedReducer";
+import axios from "axios";
 
 const ConfirmationScreen = () => {
   const navigation = useNavigation();
@@ -29,9 +30,38 @@ const ConfirmationScreen = () => {
 
   const dispatch = useDispatch();
 
-  const confirmBooking = () => {
-    dispatch(savedPlaces(route.params))
-    navigation.navigate("Main")
+  const confirmBooking = async () => {
+    const res = await fetch(`https://booking-backend-1-pmsm.onrender.com/api/users/user-details`, {
+      credentials: "include",
+    });
+
+    if (!res.ok) {
+      throw new Error("Error fetching user details");
+    }
+
+    const userDetails = await res.json();
+
+    console.log(userDetails);
+
+    const newBooking = {
+      firstName: userDetails.firstName,
+      lastName: userDetails.lastName,
+      email: userDetails.email,
+      adultCount: route.params.adults,
+      childCount: route.params.children,
+      checkIn: route.params.startDate,
+      checkOut: route.params.endDate,
+      totalCost: route.params.price,
+    };
+
+    const response = await axios.post(`https://booking-backend-1-pmsm.onrender.com/api/booking/${route.params.id}/bookings`, newBooking, {
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json"
+      }}
+    );
+
+    navigation.navigate("Main");
   }
 
   return (
@@ -123,17 +153,17 @@ const ConfirmationScreen = () => {
           </Text>
         </View>
         <Pressable
-        onPress = {confirmBooking}
+          onPress={confirmBooking}
           style={{
             backgroundColor: "#003580",
             width: 120,
             padding: 5,
             marginHorizontal: 12,
             marginBottom: 20,
-            borderRadius:4
+            borderRadius: 4
           }}
         >
-          <Text style={{textAlign:'center',color:'white',fontSize:15, fontWeight:"bold"}}>Book Now</Text>
+          <Text style={{ textAlign: 'center', color: 'white', fontSize: 15, fontWeight: "bold" }}>Book Now</Text>
         </Pressable>
       </Pressable>
     </View>

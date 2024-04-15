@@ -229,6 +229,7 @@ const PropertyInfoScreen = () => {
           onPress={() =>
             navigation.navigate("Confirmation", {
               price: route.params.price,
+              id: route.params.id,
               name: route.params.name,
               children: route.params.children,
               adults: route.params.adults,
