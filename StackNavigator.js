@@ -7,7 +7,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { AntDesign } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
-import SavedScreen from "./screens/SavedScreen";
 import BookingScreen from "./screens/BookingScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import SearchScreen from "./screens/SearchScreen";
@@ -40,20 +39,6 @@ const StackNavigator = () => {
           }}
         />
 
-        <Tab.Screen
-          name="Saved"
-          component={SavedScreen}
-          options={{
-            tabBarLabel: "Saved",
-            headerShown: false,
-            tabBarIcon: ({ focused }) =>
-              focused ? (
-                <AntDesign name="heart" size={24} color="#003580" />
-              ) : (
-                <AntDesign name="hearto" size={24} color="black" />
-              ),
-          }}
-        />
 
         <Tab.Screen
           name="Bookings"
