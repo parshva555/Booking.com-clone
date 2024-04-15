@@ -27,8 +27,9 @@ import {
 
 const HomeScreen = () => {
   const navigation = useNavigation();
+  const [destination, setDestination] = useState('');
   const [selectedDates, setSelectedDates] = useState();
-  const route = useRoute()
+  const route = useRoute();
   const [rooms, setRooms] = useState(1);
   const [adults, setAdults] = useState(2);
   const [children, setChildren] = useState(0);
@@ -73,9 +74,9 @@ const HomeScreen = () => {
       />
     );
   };
-  console.log(route.params)
-  const searchPlaces = (place) => {
-    if(!route.params || !selectedDates){
+
+  const searchPlaces = () => {
+    if(!route?.params?.input || !selectedDates.startDate || !selectedDates.endDate){
       Alert.alert('Invalid Details', 'Please enter all the details', [
         {
           text: 'Cancel',
@@ -85,13 +86,13 @@ const HomeScreen = () => {
         {text: 'OK', onPress: () => console.log('OK Pressed')},
       ]);
     }
-    if(route.params && selectedDates){
+    if(route.params.input && selectedDates){
       navigation.navigate("Places",{
         rooms:rooms,
         adults:adults,
         children:children,
         selectedDates:selectedDates,
-        place:place
+        place: route.params.input,
       })
     }
   }
@@ -123,7 +124,7 @@ const HomeScreen = () => {
             >
               <Feather name="search" size={24} color="black" />
               <TextInput
-                placeholder={route?.params ? route.params.input : "Enter your Destination"}
+                placeholder={route?.params ? route?.params?.input : "Enter your Destination"}
                 placeholderTextColor="black"
               />
             </Pressable>
@@ -199,7 +200,7 @@ const HomeScreen = () => {
 
             {/* Search Button */}
             <Pressable
-            onPress={() => searchPlaces(route?.params.input)}
+            onPress={() => {searchPlaces()}}
               style={{
                 paddingHorizontal: 10,
                 borderColor: "#FFC72C",
@@ -241,7 +242,7 @@ const HomeScreen = () => {
           style={{marginTop:40,justifyContent:'center',alignItems:'center'}}>
             <Image style={{width:200,height:50,resizeMode:"cover"}} source={{
               uri:"https://assets.stickpng.com/thumbs/5a32a821cb9a85480a628f8f.png"
-            }}/>            
+            }}/>
           </Pressable>
         </ScrollView>
       </View>
@@ -319,7 +320,7 @@ const HomeScreen = () => {
               <Pressable>
                 <Text>{rooms}</Text>
               </Pressable>
-              <Pressable 
+              <Pressable
               onPress={() => setRooms((c) => c+1)}
               style={{
                   width: 26,
@@ -377,7 +378,7 @@ const HomeScreen = () => {
               <Pressable>
                 <Text>{adults}</Text>
               </Pressable>
-              <Pressable 
+              <Pressable
               onPress={()=>setAdults((c) => c+1)}
               style={{
                   width: 26,

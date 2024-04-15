@@ -1,7 +1,7 @@
-import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
 import { useRoute, useNavigation } from "@react-navigation/native";
-import { useLayoutEffect } from "react";
+import { useLayoutEffect, useEffect } from "react";
 import { Octicons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { Fontisto } from "@expo/vector-icons";
@@ -16,12 +16,21 @@ import {
   ModalTitle,
   SlideAnimation,
 } from "react-native-modals";
+
 const PlacesScreen = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [selectFilter, setSelectedFilter] = useState([]);
-  const [data,setData] = useState([]);
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
   const route = useRoute();
-  
+
+  useEffect(() => {
+    async function fetchHotels() {
+      await fetchHotelsByCity(route.params.place);
+    }
+
+    fetchHotels();
+  })
 
   const filters = [
     {
@@ -42,16 +51,17 @@ const PlacesScreen = () => {
   //   }
   // };
   const fetchHotelsByCity = async (city) => {
-  try {
-    const response = await axios.get("https://booking-backend-1-pmsm.onrender.com/api/hotels/city", {
-      params: { city: city }
-    });
-    return response.data;
-  } catch (error) {
-    throw new Error("Error fetching hotels");
-  }
-};
-  
+    try {
+      const response = await axios.get("https://booking-backend-1-pmsm.onrender.com/api/hotels/city", {
+        params: { city: city }
+      });
+      setData(response.data);
+      setLoading(false);
+    } catch (error) {
+      throw new Error("Error fetching hotels");
+    }
+  };
+
   // const fetchHotelById = async (hotelId) => {
   //   try {
   //     const response = await axios.get(`${API_BASE_URL}/api/hotels/${hotelId}`);
@@ -60,23 +70,22 @@ const PlacesScreen = () => {
   //     throw new Error("Error fetching hotel");
   //   }
   // };
-  const searchPlaces = data?.filter((item) => item.place === route.params.place)
-  const [sortedData,setSortedData] = useState(data)
-  console.log(searchPlaces)
-  const compare  = (a,b) => {
-    if(a.newPrice > b.newPrice){
+  // const [sortedData, setSortedData] = useState(data)
+
+  const compare = (a, b) => {
+    if (a.newPrice > b.newPrice) {
       return -1;
     }
-    if(a.newPrice < b.newPrice){
+    if (a.newPrice < b.newPrice) {
       return 1;
     }
     return 0;
   }
-  const comparison = (a,b) => {
-    if(a.newPrice < b.newPrice){
+  const comparison = (a, b) => {
+    if (a.newPrice < b.newPrice) {
       return -1;
     }
-    if(a.newPrice > b.newPrice){
+    if (a.newPrice > b.newPrice) {
       return 1;
     }
     return 0;
@@ -84,7 +93,7 @@ const PlacesScreen = () => {
   }
   const applyFilter = (filter) => {
     setModalVisible(false);
-    switch(filter){
+    switch (filter) {
       case "cost:High to Low":
         searchPlaces.map((val) => val.properties.sort(compare))
         setSortedData(searchPlaces)
@@ -96,7 +105,8 @@ const PlacesScreen = () => {
     }
   }
   const navigation = useNavigation();
-  useLayoutEffect(async () => {
+
+  useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: true,
       title: "Popular Places",
@@ -113,10 +123,12 @@ const PlacesScreen = () => {
         shadowColor: "transparent",
       },
     });
-    const result = await fetchHotelsByCity(route.params.city);
-    setData(result)
-  }, [data]);
-  console.log(route.params.place);
+  }, [loading]);
+
+  if (loading) {
+    return <ActivityIndicator size="large" color="#0000ff" />; // Or your preferred loading UI
+  }
+
   return (
     <View>
       <Pressable
@@ -144,8 +156,8 @@ const PlacesScreen = () => {
             Filter
           </Text>
         </Pressable>
-        <Pressable onPress={() => navigation.navigate("Map",{
-          searchResults:searchPlaces
+        <Pressable onPress={() => navigation.navigate("Map", {
+          searchResults: searchPlaces
         })} style={{ flexDirection: "row", alignItems: "center" }}>
           <Fontisto name="map-marker-alt" size={22} color="gray" />
           <Text style={{ fontSize: 15, fontWeight: 500, marginLeft: 8 }}>
@@ -154,21 +166,19 @@ const PlacesScreen = () => {
         </Pressable>
       </Pressable>
       <ScrollView style={{ backgroundColor: "#f5f5f5" }}>
-        {sortedData
-          ?.filter((item) => item.place === route.params.place)
-          .map((item) =>
-            item.properties.map((property, index) => (
-              <PropertyCard
-                key={index}
-                children={route.params.children}
-                adults={route.params.adults}
-                selectedDates={route.params.selectedDates}
-                property={property}
-                availableRooms={property.rooms}
-                rooms={route.params.rooms}
-              />
-            ))
-          )}
+        {data
+          .filter((item) => item.city === route.params.place)
+          .map((hotel, index) => (
+            <PropertyCard
+              key={index}
+              children={route.params.children}
+              adults={route.params.adults}
+              selectedDates={route.params.selectedDates}
+              hotel={hotel}
+            // availableRooms={property.rooms}
+            // rooms={route.params.rooms}
+            />
+          ))}
       </ScrollView>
       <BottomModal
         onBackdropPress={() => setModalVisible(!modalVisible)}
@@ -177,13 +187,13 @@ const PlacesScreen = () => {
         footer={
           <ModalFooter>
             <Pressable
-            onPress={() => applyFilter(selectFilter)}
+              onPress={() => applyFilter(selectFilter)}
               style={{
                 paddingRight: 10,
                 marginLeft: "auto",
                 marginRight: "auto",
                 marginVertical: 10,
-                marginBottom:20
+                marginBottom: 20
               }}
             >
               <Text>Apply</Text>
@@ -226,8 +236,8 @@ const PlacesScreen = () => {
                 >
                   {selectFilter.includes(item.filter) ? (
                     <FontAwesome name="circle" size={18} color="green" />
-                  ):(
-                      <Entypo name="circle" size={18} color="black" />
+                  ) : (
+                    <Entypo name="circle" size={18} color="black" />
                   )}
                   <Text
                     style={{ fontSize: 16, fontWeight: "500", marginLeft: 6 }}

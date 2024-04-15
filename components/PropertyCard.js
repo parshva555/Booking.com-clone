@@ -11,27 +11,28 @@ import { AntDesign } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import {useNavigation} from '@react-navigation/native'
 const PropertyCard = ({
-  rooms,
+  // rooms,
   children,
-  property,
+  hotel,
   adults,
   selectedDates,
-  availableRooms,
+  // availableRooms,
 }) => {
   const navigation = useNavigation();
   const { width, height } = Dimensions.get("window");
+
   return (
     <View>
       <Pressable onPress={() => navigation.navigate("Info",{
-        name:property.name,
-        rating:property.rating,
-        oldPrice:property.oldPrice,
-        newPrice:property.newPrice,
-        photos:property.photos,
-        availableRooms:property.rooms,
+        name:hotel.name,
+        rating:hotel.starRating,
+        // oldPrice:property.oldPrice,
+        price:hotel.pricePerNight,
+        photos:hotel.imageUrls,
+        // availableRooms:property.rooms,
         adults:adults,
         children:children,
-        rooms:rooms,
+        // rooms:rooms,
         selectedDates:selectedDates
       })}
         style={{ flexDirection: "row", margin: 15, backgroundColor: "white" }}
@@ -39,7 +40,7 @@ const PropertyCard = ({
         <View>
           <Image
             style={{ height: height / 4, width: width - 280 }}
-            source={{ uri: property.image }}
+            source={{ uri: hotel.imageUrls[0] }}
           />
         </View>
         <View style={{ padding: 15 }}>
@@ -50,7 +51,7 @@ const PropertyCard = ({
               justifyContent: "space-between",
             }}
           >
-            <Text style={{ width: 180 }}>{property.name}</Text>
+            <Text style={{ width: 180 }}>{hotel.name}</Text>
             <AntDesign name="hearto" size={24} color="red" />
           </View>
           <View>
@@ -63,7 +64,7 @@ const PropertyCard = ({
               }}
             >
               <MaterialIcons name="stars" size={24} color="green" />
-              <Text>{property.rating}</Text>
+              <Text>{hotel.starRating}</Text>
               <View
                 style={{
                   backgroundColor: "#6cb4ee",
@@ -80,7 +81,7 @@ const PropertyCard = ({
               </View>
             </View>
           </View>
-          <Text
+          {/* <Text
             style={{
               width: 200,
               marginTop: 6,
@@ -91,7 +92,7 @@ const PropertyCard = ({
             {property.address.length > 50
               ? property.address.substr(0, 50)
               : property.address}
-          </Text>
+          </Text> */}
           <Text style={{ marginTop: 4, fontSize: 15, fontWeight: 500 }}>
             Price for 1 Night and {adults} adults
           </Text>
@@ -103,25 +104,25 @@ const PropertyCard = ({
               gap: 8,
             }}
           >
-            <Text
+            {/* <Text
               style={{
                 color: "red",
                 fontSize: 18,
                 textDecorationLine: "line-through",
               }}
             >
-              {property.oldPrice * adults}
-            </Text>
+              {hotel.pricePerNight * adults}
+            </Text> */}
             <Text style={{ color: "black", fontSize: 18 }}>
-              Rs {property.newPrice * adults}
+              Rs {hotel.pricePerNight * adults}
             </Text>
           </View>
-          <View style={{ marginTop: 6 }}>
+          {/* <View style={{ marginTop: 6 }}>
             <Text style={{ fontSize: 16, color: "gray" }}>Deluxe Room</Text>
             <Text style={{ fontSize: 16, color: "gray" }}>
               Hotel Room: 1 bed
             </Text>
-          </View>
+          </View> */}
           <View  style={{
                   backgroundColor: "#6082b6",
                   paddingVertical: 2,
