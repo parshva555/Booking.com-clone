@@ -1,6 +1,5 @@
 import {
   Button,
-  Image,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -62,26 +61,23 @@ const HomeScreen = () => {
   const handleSignOut = async () => {
     try {
         await axios.post("https://booking-backend-1-pmsm.onrender.com/api/users/logout");
-        console.log("hello") 
+        console.log("hello")
         navigation.navigate("Login");
     } catch (error) {
         console.error("Error during sign-out:", error);
         Alert.alert("Error", "Unable to sign out. Please try again.");
     }
-};
+  };
 
   const customButton = (onConfirm) => {
     return (
-    <Button
-      onPress={onConfirm}
-      style={{
-        backgroundColor: "red",
-        width: "80%",
-        marginHorizontal: "3%",
-        fontSize: 20,
-      }}
-      title="Submit"
-    />
+      <View style={buttonStyles.container}>
+      <Button
+        onPress={onConfirm}
+        title="Submit"
+        color="#BB6464"
+      />
+    </View>
 
     );
   };
@@ -185,6 +181,7 @@ const HomeScreen = () => {
                 allowFontScaling={false}
                 placeholder={"Select Your Dates"}
                 mode={"range"}
+                blockBefore={true}
               />
             </Pressable>
             <Pressable
@@ -405,3 +402,11 @@ const HomeScreen = () => {
 export default HomeScreen;
 
 const styles = StyleSheet.create({});
+
+const buttonStyles = StyleSheet.create({
+  container: {
+    width: "80%",
+    marginHorizontal: "3%",
+    borderRadius: 8,
+  },
+});
