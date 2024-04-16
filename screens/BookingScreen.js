@@ -199,7 +199,7 @@ const BookingScreen = () => {
                 <View style={{ borderBottomWidth: 1, borderBottomColor: 'black' }} />
 
                 <View style={{marginLeft:13, marginTop:10}}>
-                <Text style={{fontSize:16, fontWeight:"bold",color:'#007fff' }}>Rs.{item.bookings[0].totalCost} per Night </Text>
+                <Text style={{fontSize:16, fontWeight:"bold",color:'#007fff' }}>Rs.{item.bookings[0].totalCost * item.bookings[0].adultCount/2} per Night for {item.bookings[0].adultCount /2} rooms  </Text>
                   </View>
               </View>
             ))

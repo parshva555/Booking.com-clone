@@ -37,7 +37,7 @@ const PropertyInfoScreen = () => {
   const startDate = route.params.selectedDates.startDate;
 const endDate = route.params.selectedDates.endDate;
 const differenceInDays = calculateDifferenceInDays(startDate, endDate);
-const totalCost = differenceInDays * route.params.price
+const totalCost = differenceInDays * route.params.price * route.params.adults/2;
 console.log(route.params)
 // Log the calculated difference in days
 console.log('Difference in Days:', differenceInDays);

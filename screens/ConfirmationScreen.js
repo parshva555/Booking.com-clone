@@ -166,7 +166,7 @@ console.log('Difference in Days:', differenceInDays);
             Price
           </Text>
           <Text style={{ fontSize: 16, fontWeight: "bold", color: "#007fff" }}>
-            Rs. {route.params.price * differenceInDays}
+            Rs. {route.params.price * differenceInDays * (route.params.adults / 2)}
           </Text>
         </View>
         <Pressable
