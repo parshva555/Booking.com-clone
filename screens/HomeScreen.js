@@ -16,6 +16,8 @@ import { Ionicons } from "@expo/vector-icons";
 import Header from "../components/Header";
 import { Feather } from "@expo/vector-icons";
 import DatePicker from "react-native-date-ranges";
+import { MaterialIcons } from '@expo/vector-icons';
+import axios from "axios";
 import {
   BottomModal,
   ModalButton,
@@ -37,12 +39,11 @@ const HomeScreen = () => {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: true,
-      title: "Booking.com",
+      title: "Vistadel",
       headerTitleStyle: {
         fontSize: 20,
         fontWeight: "bold",
         color: "white",
-        marginLeft: 115,
       },
       headerStyle: {
         backgroundColor: "#003580",
@@ -51,15 +52,24 @@ const HomeScreen = () => {
         shadowColor: "transparent",
       },
       headerRight: () => (
-        <Ionicons
-          name="notifications-outline"
-          size={24}
-          color="white"
-          style={{ marginRight: 12 }}
-        />
+        <>
+         <Pressable onPress={handleSignOut}>
+         <MaterialIcons name="logout" size={25} color="white" style={{marginRight:10}} />
+        </Pressable>
+        </>
       ),
     });
   }, []);
+  const handleSignOut = async () => {
+    try {
+        await axios.post("https://booking-backend-1-pmsm.onrender.com/api/users/logout");
+        console.log("hello") 
+        navigation.navigate("Login");
+    } catch (error) {
+        console.error("Error during sign-out:", error);
+        Alert.alert("Error", "Unable to sign out. Please try again.");
+    }
+};
 
   const customButton = (onConfirm) => {
     return (

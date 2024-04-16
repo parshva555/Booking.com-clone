@@ -120,7 +120,7 @@ const BookingScreen = () => {
                 }}
               >
                 <Pressable
-                  onPress={() => handleDeleteBooking(item.bookings[index]._id)}
+                  onPress={() => handleDeleteBooking(item.bookings[0]._id)}
                   style={{ position: "absolute", top: 10, right: 10 }}
                 >
                   <MaterialIcons name="delete" size={24} color="red" />

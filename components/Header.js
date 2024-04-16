@@ -10,18 +10,7 @@ const Header = () => {
       <Ionicons name="bed-outline" size={23} color="white" />
       <Text style={{marginLeft:8, fontWeight:"bold",color:'white',fontSize:15}}>Stays</Text>
       </Pressable>
-      <Pressable style={{   flexDirection:'row',alignItems:'center'}}>
-      <Ionicons name="airplane-outline" size={23} color="white" />
-      <Text style={{marginLeft:8, fontWeight:"bold",color:'white',fontSize:15}}>Flights</Text>
-      </Pressable>
-      <Pressable style={{   flexDirection:'row',alignItems:'center'}}>
-      <Ionicons name="car-outline" size={23} color="white" />
-      <Text style={{marginLeft:8, fontWeight:"bold",color:'white',fontSize:15}}>Car Rental</Text>
-      </Pressable>
-      <Pressable style={{   flexDirection:'row',alignItems:'center'}}>
-      <FontAwesome6 name="uber" size={23} color="white" />
-      <Text style={{marginLeft:8, fontWeight:"bold",color:'white',fontSize:15}}>Taxi</Text>
-      </Pressable>
+
     </View>
   )
 }
