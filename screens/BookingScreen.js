@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Dimensions, Image, ActivityIndicator, StyleSheet, Text, View, SafeAreaView, Pressable, ScrollView, Alert } from 'react-native';
+import { Dimensions, Image, ActivityIndicator, Text, View, SafeAreaView, Pressable, ScrollView, Alert } from 'react-native';
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 import { useNavigation, useFocusEffect } from '@react-navigation/native'; // Import useFocusEffect
 import { useLayoutEffect } from 'react';
+
 const BookingScreen = () => {
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);

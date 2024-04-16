@@ -50,12 +50,10 @@ const RegisterScreen = () => {
           "https://booking-backend-1-pmsm.onrender.com/api/users/register",
           formData
         );
-        console.log("first");
-        console.log(response.data);
-        console.log(response.data.message);
+
         return navigation.navigate("Login")
       } catch (error) {
-        console.error("error:", error); 
+        console.error("error:", error);
         Alert.alert(
           "Registration Failed",
           `An error occurred while registering: ${error.message}`,

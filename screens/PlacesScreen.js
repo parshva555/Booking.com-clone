@@ -30,7 +30,7 @@ const PlacesScreen = () => {
     }
 
     fetchHotels();
-  }, []); // Add [] to useEffect to avoid unnecessary re-renders
+  }, []);
 
   const filters = [
     {
@@ -71,7 +71,7 @@ const PlacesScreen = () => {
         break;
     }
   };
-  
+
   const navigation = useNavigation();
 
   useLayoutEffect(() => {
