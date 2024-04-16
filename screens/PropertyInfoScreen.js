@@ -17,6 +17,30 @@ const PropertyInfoScreen = () => {
   const route = useRoute();
   const navigation = useNavigation();
   const [showButton, setShowButton] = useState(false);
+  function calculateDifferenceInDays(startDateString, endDateString) {
+    // Convert date strings from `YYYY/MM/DD` format to `YYYY-MM-DD` format
+    const formattedStartDateString = startDateString.replaceAll('/', '-');
+    const formattedEndDateString = endDateString.replaceAll('/', '-');
+  
+    // Parse the date strings using the formatted format
+    const startDate = new Date(formattedStartDateString);
+    const endDate = new Date(formattedEndDateString);
+  
+    // Calculate the difference in time in milliseconds
+    const differenceInTime = endDate - startDate;
+  
+    // Convert the difference from milliseconds to days
+    const differenceInDays = differenceInTime / (1000 * 60 * 60 * 24);
+  
+    return differenceInDays;
+  }
+  const startDate = route.params.selectedDates.startDate;
+const endDate = route.params.selectedDates.endDate;
+const differenceInDays = calculateDifferenceInDays(startDate, endDate);
+const totalCost = differenceInDays * route.params.price
+console.log(route.params)
+// Log the calculated difference in days
+console.log('Difference in Days:', differenceInDays);
 
   const handleScroll = (event) => {
     const scrollPosition = event.nativeEvent.contentOffset.y;
@@ -91,10 +115,11 @@ const PropertyInfoScreen = () => {
                 <Text>{route.params.rating}</Text>
                 <View
                   style={{
-                    backgroundColor: "#003580",
+                    
+                    backgroundColor: "#FFD700",
                     paddingVertical: 3,
                     borderRadius: 5,
-                    width: 100,
+                    width: 60,
                   }}
                 >
                   <Text
@@ -104,7 +129,7 @@ const PropertyInfoScreen = () => {
                       fontSize: 15,
                     }}
                   >
-                    Genius Level
+                    Luxury
                   </Text>
                 </View>
               </View>
@@ -151,9 +176,9 @@ const PropertyInfoScreen = () => {
             gap: 8,
           }}
         >
-          <Text style={{ color: "black", fontSize: 20 }}>
-            Rs {route.params.price * route.params.adults}
-          </Text>
+<Text style={{ color: "black", fontSize: 20 }}>
+  Rs {totalCost}
+</Text>
         </View>
         <View
           style={{

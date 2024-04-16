@@ -99,6 +99,7 @@ const BookingScreen = () => {
     }, [])
   );
 
+
   return (
     <SafeAreaView>
       <ScrollView>
@@ -153,8 +154,8 @@ const BookingScreen = () => {
                         padding: 6,
                         borderRadius: 4,
                         width: 100,
-                        backgroundColor: "#0039a6",
-
+                        backgroundColor: "#FFD700",
+                        width:60,
                         marginLeft: 4,
                         borderRadius: 5,
                       }}
@@ -167,7 +168,7 @@ const BookingScreen = () => {
                           fontWeight: "400",
                         }}
                       >
-                        Genius Level
+                        Luxury
                       </Text>
                     </View>
                   </View>
@@ -195,6 +196,11 @@ const BookingScreen = () => {
                     </Text>
                   </View>
                 </View>
+                <View style={{ borderBottomWidth: 1, borderBottomColor: 'black' }} />
+
+                <View style={{marginLeft:13, marginTop:10}}>
+                <Text style={{fontSize:16, fontWeight:"bold",color:'#007fff' }}>Rs.{item.bookings[0].totalCost} per Night </Text>
+                  </View>
               </View>
             ))
           ) : (

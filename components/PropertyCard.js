@@ -20,6 +20,28 @@ const PropertyCard = ({
 }) => {
   const navigation = useNavigation();
   const { width, height } = Dimensions.get("window");
+  function calculateDifferenceInDays(startDateString, endDateString) {
+    // Convert date strings from `YYYY/MM/DD` format to `YYYY-MM-DD` format
+    const formattedStartDateString = startDateString.replaceAll('/', '-');
+    const formattedEndDateString = endDateString.replaceAll('/', '-');
+  
+    // Parse the date strings using the formatted format
+    const startDate = new Date(formattedStartDateString);
+    const endDate = new Date(formattedEndDateString);
+  
+    // Calculate the difference in time in milliseconds
+    const differenceInTime = endDate - startDate;
+  
+    // Convert the difference from milliseconds to days
+    const differenceInDays = differenceInTime / (1000 * 60 * 60 * 24);
+  
+    return differenceInDays;
+  }
+  const startDate = selectedDates.startDate;
+  const endDate = selectedDates.endDate;
+  const differenceInDays = calculateDifferenceInDays(startDate, endDate);
+  // Log the calculated difference in days
+  console.log('Difference in Days:', differenceInDays);
 
   return (
     <View>
@@ -50,7 +72,6 @@ const PropertyCard = ({
             }}
           >
             <Text style={{ width: 180 }}>{hotel.name}</Text>
-            <AntDesign name="hearto" size={24} color="red" />
           </View>
           <View>
             <View
@@ -65,16 +86,17 @@ const PropertyCard = ({
               <Text>{hotel.starRating}</Text>
               <View
                 style={{
-                  backgroundColor: "#6cb4ee",
+                  backgroundColor: "#FFD700",
                   paddingVertical: 3,
                   borderRadius: 5,
-                  width: 100,
+                  width: 60,
+
                 }}
               >
                 <Text
-                  style={{ textAlign: "center", color: "white", fontSize: 15 }}
+                  style={{ textAlign: "center", color: "black", fontSize: 15, }}
                 >
-                  Genius Level
+                  Luxury
                 </Text>
               </View>
             </View>
@@ -91,7 +113,7 @@ const PropertyCard = ({
             }}
           >
             <Text style={{ color: "black", fontSize: 18 }}>
-              Rs {hotel.pricePerNight * adults}
+              Rs {hotel.pricePerNight * differenceInDays}
             </Text>
           </View>
           <View  style={{

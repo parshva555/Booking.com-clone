@@ -7,7 +7,28 @@ import axios from "axios";
 const ConfirmationScreen = () => {
   const navigation = useNavigation();
   const route = useRoute();
-
+  function calculateDifferenceInDays(startDateString, endDateString) {
+    // Convert date strings from `YYYY/MM/DD` format to `YYYY-MM-DD` format
+    const formattedStartDateString = startDateString.replaceAll('/', '-');
+    const formattedEndDateString = endDateString.replaceAll('/', '-');
+  
+    // Parse the date strings using the formatted format
+    const startDate = new Date(formattedStartDateString);
+    const endDate = new Date(formattedEndDateString);
+  
+    // Calculate the difference in time in milliseconds
+    const differenceInTime = endDate - startDate;
+  
+    // Convert the difference from milliseconds to days
+    const differenceInDays = differenceInTime / (1000 * 60 * 60 * 24);
+    return differenceInDays;
+  }
+  console.log(route.params)
+  const startDate = route.params.startDate;
+const endDate = route.params.endDate;
+const differenceInDays = calculateDifferenceInDays(startDate, endDate);
+// Log the calculated difference in days
+console.log('Difference in Days:', differenceInDays);
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: true,
@@ -89,20 +110,20 @@ const ConfirmationScreen = () => {
                 <Text>{route.params.rating}</Text>
                 <View
                   style={{
-                    backgroundColor: "#003580",
+                    backgroundColor: "#FFD700",
                     paddingVertical: 3,
                     borderRadius: 5,
-                    width: 100,
+                    width: 60,
                   }}
                 >
                   <Text
                     style={{
                       textAlign: "center",
-                      color: "white",
+                      color: "black",
                       fontSize: 15,
                     }}
                   >
-                    Genius Level
+                    Luxury
                   </Text>
                 </View>
               </View>
@@ -145,7 +166,7 @@ const ConfirmationScreen = () => {
             Price
           </Text>
           <Text style={{ fontSize: 16, fontWeight: "bold", color: "#007fff" }}>
-            Rs. {route.params.price}
+            Rs. {route.params.price * differenceInDays}
           </Text>
         </View>
         <Pressable

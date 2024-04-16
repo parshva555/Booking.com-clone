@@ -1,7 +1,7 @@
 import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRoute, useNavigation } from "@react-navigation/native";
-import { useLayoutEffect, useEffect } from "react";
+import { useLayoutEffect } from "react";
 import { Octicons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
@@ -21,6 +21,7 @@ const PlacesScreen = () => {
   const [selectFilter, setSelectedFilter] = useState([]);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [sortedData, setSortedData] = useState([]); // Define sortedData state
   const route = useRoute();
 
   useEffect(() => {
@@ -29,7 +30,7 @@ const PlacesScreen = () => {
     }
 
     fetchHotels();
-  })
+  }, []); // Add [] to useEffect to avoid unnecessary re-renders
 
   const filters = [
     {
@@ -54,38 +55,23 @@ const PlacesScreen = () => {
     }
   };
 
-  const compare = (a, b) => {
-    if (a.newPrice > b.newPrice) {
-      return -1;
-    }
-    if (a.newPrice < b.newPrice) {
-      return 1;
-    }
-    return 0;
-  }
-  const comparison = (a, b) => {
-    if (a.newPrice < b.newPrice) {
-      return -1;
-    }
-    if (a.newPrice > b.newPrice) {
-      return 1;
-    }
-    return 0;
-
-  }
   const applyFilter = (filter) => {
     setModalVisible(false);
     switch (filter) {
       case "cost:High to Low":
-        searchPlaces.map((val) => val.properties.sort(compare))
-        setSortedData(searchPlaces)
+        const highToLowSortedData = [...data].sort((a, b) => b.pricePerNight - a.pricePerNight);
+        setSortedData(highToLowSortedData);
         break;
       case "cost:Low to High":
-        searchPlaces.map((val) => val.properties.sort(comparison))
-        setSortedData(searchPlaces)
+        const lowToHighSortedData = [...data].sort((a, b) => a.pricePerNight - b.pricePerNight);
+        setSortedData(lowToHighSortedData);
+        break;
+      default:
+        setSortedData(data); // No sorting, set data as it is
         break;
     }
-  }
+  };
+  
   const navigation = useNavigation();
 
   useLayoutEffect(() => {
@@ -128,32 +114,42 @@ const PlacesScreen = () => {
           style={{ flexDirection: "row", alignItems: "center" }}
         >
           <Octicons name="arrow-switch" size={22} color="gray" />
-          <Text style={{ fontSize: 15, fontWeight: 500, marginLeft: 8 }}>
+          <Text style={{ fontSize: 15, fontWeight: "500", marginLeft: 8 }}>
             Sort
           </Text>
         </Pressable>
         <Pressable style={{ flexDirection: "row", alignItems: "center" }}>
           <Ionicons name="filter" size={22} color="gray" />
-          <Text style={{ fontSize: 15, fontWeight: 500, marginLeft: 8 }}>
+          <Text style={{ fontSize: 15, fontWeight: "500", marginLeft: 8 }}>
             Filter
           </Text>
         </Pressable>
 
       </Pressable>
       <ScrollView style={{ backgroundColor: "#f5f5f5" }}>
-        {data
-          .filter((item) => item.city === route.params.place)
-          .map((hotel, index) => (
+        {sortedData.length > 0 ? (
+          sortedData.map((hotel, index) => (
             <PropertyCard
               key={index}
               children={route.params.children}
               adults={route.params.adults}
               selectedDates={route.params.selectedDates}
               hotel={hotel}
-            // availableRooms={property.rooms}
-            // rooms={route.params.rooms}
             />
-          ))}
+          ))
+        ) : (
+          data
+            .filter((item) => item.city === route.params.place)
+            .map((hotel, index) => (
+              <PropertyCard
+                key={index}
+                children={route.params.children}
+                adults={route.params.adults}
+                selectedDates={route.params.selectedDates}
+                hotel={hotel}
+              />
+            ))
+        )}
       </ScrollView>
       <BottomModal
         onBackdropPress={() => setModalVisible(!modalVisible)}
@@ -230,5 +226,3 @@ const PlacesScreen = () => {
 };
 
 export default PlacesScreen;
-
-const styles = StyleSheet.create({});
