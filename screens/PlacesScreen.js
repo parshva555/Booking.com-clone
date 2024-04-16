@@ -4,7 +4,6 @@ import { useRoute, useNavigation } from "@react-navigation/native";
 import { useLayoutEffect, useEffect } from "react";
 import { Octicons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
-import { Fontisto } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 import PropertyCard from "../components/PropertyCard";
@@ -118,7 +117,7 @@ const PlacesScreen = () => {
         style={{
           flexDirection: "row",
           alignItems: "center",
-          justifyContent: "space-between",
+          justifyContent:'space-around',
           paddingHorizontal: 20,
           padding: 12,
           backgroundColor: "white",
@@ -139,14 +138,7 @@ const PlacesScreen = () => {
             Filter
           </Text>
         </Pressable>
-        <Pressable onPress={() => navigation.navigate("Map", {
-          searchResults: searchPlaces
-        })} style={{ flexDirection: "row", alignItems: "center" }}>
-          <Fontisto name="map-marker-alt" size={22} color="gray" />
-          <Text style={{ fontSize: 15, fontWeight: 500, marginLeft: 8 }}>
-            Map
-          </Text>
-        </Pressable>
+
       </Pressable>
       <ScrollView style={{ backgroundColor: "#f5f5f5" }}>
         {data
