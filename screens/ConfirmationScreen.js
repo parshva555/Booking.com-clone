@@ -3,7 +3,6 @@ import React, { useLayoutEffect } from "react";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useDispatch } from 'react-redux'
-import { savedPlaces } from "../SavedReducer";
 import axios from "axios";
 
 const ConfirmationScreen = () => {

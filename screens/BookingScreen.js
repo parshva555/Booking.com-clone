@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Dimensions, Image, ActivityIndicator, StyleSheet, Text, View, SafeAreaView, Pressable, ScrollView, Alert } from 'react-native';
-import { MaterialIcons ,Ionicons} from "@expo/vector-icons";
+import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 import { useNavigation, useFocusEffect } from '@react-navigation/native'; // Import useFocusEffect
 import { useLayoutEffect } from 'react';
 const BookingScreen = () => {
@@ -8,6 +8,7 @@ const BookingScreen = () => {
   const [loading, setLoading] = useState(true);
   const { width, height } = Dimensions.get("window");
   const navigation = useNavigation();
+
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: true,
@@ -34,6 +35,7 @@ const BookingScreen = () => {
       ),
     });
   }, []);
+
   useEffect(() => {
     async function getBookings() {
       try {
@@ -60,7 +62,7 @@ const BookingScreen = () => {
         method: 'DELETE',
         credentials: "include",
       });
-  
+
       console.log("Response status:", response.status);
       if (response.ok) {
         console.log("Booking deleted successfully");
@@ -74,7 +76,7 @@ const BookingScreen = () => {
       Alert.alert("Error", "Failed to delete booking. Please try again later.");
     }
   };
-  
+
   const refreshBookings = async () => {
     setLoading(true);
     try {
@@ -84,6 +86,7 @@ const BookingScreen = () => {
       const data = await response.json();
       setBookings(data);
       setLoading(false);
+			showData();
     } catch (error) {
       console.error(error);
       setLoading(false);
