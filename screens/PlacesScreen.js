@@ -82,7 +82,6 @@ const PlacesScreen = () => {
         fontSize: 20,
         fontWeight: "bold",
         color: "white",
-        marginLeft: 115,
       },
       headerStyle: {
         backgroundColor: "#BB6464",
@@ -116,12 +115,6 @@ const PlacesScreen = () => {
           <Octicons name="arrow-switch" size={22} color="gray" />
           <Text style={{ fontSize: 15, fontWeight: "500", marginLeft: 8 }}>
             Sort
-          </Text>
-        </Pressable>
-        <Pressable style={{ flexDirection: "row", alignItems: "center" }}>
-          <Ionicons name="filter" size={22} color="gray" />
-          <Text style={{ fontSize: 15, fontWeight: "500", marginLeft: 8 }}>
-            Filter
           </Text>
         </Pressable>
 

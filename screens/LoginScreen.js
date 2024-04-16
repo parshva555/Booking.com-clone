@@ -74,7 +74,7 @@ const LoginScreen = () => {
             marginTop: 100,
           }}
         >
-          <Text style={{ color: "#003580", fontSize: 17, fontWeight: 700 }}>
+          <Text style={{ color: "#009688", fontSize: 17, fontWeight: 700 }}>
             Sign In
           </Text>
           <Text style={{ marginTop: 15, fontSize: 18, fontWeight: 500 }}>
@@ -129,7 +129,7 @@ const LoginScreen = () => {
           onPress={login}
           style={{
             width: 200,
-            backgroundColor: "#003580",
+            backgroundColor: "#009688",
             padding: 15,
             borderRadius: 7,
             marginTop: 50,

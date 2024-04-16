@@ -11,8 +11,6 @@ import BookingScreen from "./screens/BookingScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import SearchScreen from "./screens/SearchScreen";
 import PlacesScreen from "./screens/PlacesScreen";
-import MapScreen from "./screens/MapScreen";
-import RoomsScreen from "./screens/RoomsScreen";
 import PropertyInfoScreen from "./screens/PropertyInfoScreen";
 import UserScreen from "./screens/UserScreen";
 import ConfirmationScreen from "./screens/ConfirmationScreen";
@@ -84,9 +82,7 @@ const StackNavigator = () => {
         <Stack.Screen name="Main" component={BottomTabs} options={{headerShown:false}} />
         <Stack.Screen name="Search" component={SearchScreen} options={{headerShown:false}} />
         <Stack.Screen name="Places" component={PlacesScreen} />
-        <Stack.Screen name="Map" component={MapScreen} options={{headerShown:false}}  />
         <Stack.Screen name="Info" component={PropertyInfoScreen}   />
-        <Stack.Screen name="Rooms" component={RoomsScreen} />
         <Stack.Screen name="User" component={UserScreen} />
         <Stack.Screen name="Confirmation" component={ConfirmationScreen} />
       </Stack.Navigator>

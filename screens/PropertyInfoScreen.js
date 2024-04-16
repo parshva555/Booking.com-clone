@@ -59,10 +59,9 @@ console.log('Difference in Days:', differenceInDays);
         fontSize: 20,
         fontWeight: "bold",
         color: "white",
-        marginLeft: 115,
       },
       headerStyle: {
-        backgroundColor: "#003580",
+        backgroundColor: "#BB6464",
         height: 110,
         borderBottomColor: "transparent",
         shadowColor: "transparent",
@@ -206,7 +205,7 @@ console.log('Difference in Days:', differenceInDays);
               Check In
             </Text>
             <Text
-              style={{ fontSize: 16, fontWeight: "bold", color: "#007fff" }}
+              style={{ fontSize: 16, fontWeight: "bold", color: "#BB6464" }}
             >
               {route.params.selectedDates.startDate}
             </Text>
@@ -216,7 +215,7 @@ console.log('Difference in Days:', differenceInDays);
               Check Out
             </Text>
             <Text
-              style={{ fontSize: 16, fontWeight: "bold", color: "#007fff" }}
+              style={{ fontSize: 16, fontWeight: "bold", color: "#BB6464" }}
             >
               {route.params.selectedDates.endDate}
             </Text>
@@ -226,7 +225,7 @@ console.log('Difference in Days:', differenceInDays);
           <Text style={{ fontSize: 16, fontWeight: 600, marginBottom: 3 }}>
             Guests
           </Text>
-          <Text style={{ fontSize: 16, fontWeight: "bold", color: "#007fff" }}>
+          <Text style={{ fontSize: 16, fontWeight: "bold", color: "#BB6464" }}>
             {route.params.adults} adults{" "}
             {route.params.children} children
           </Text>
@@ -264,7 +263,7 @@ console.log('Difference in Days:', differenceInDays);
             })
           }
           style={{
-            backgroundColor: "#6cb4ee",
+            backgroundColor: "#54BAB9",
             position: "absolute",
             bottom: 15,
             padding: 13,

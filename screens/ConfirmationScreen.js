@@ -39,7 +39,7 @@ console.log('Difference in Days:', differenceInDays);
         color: "white",
       },
       headerStyle: {
-        backgroundColor: "#003580",
+        backgroundColor: "#BB6464",
         height: 110,
         borderBottomColor: "transparent",
         shadowColor: "transparent",
@@ -136,7 +136,7 @@ console.log('Difference in Days:', differenceInDays);
               Check In
             </Text>
             <Text
-              style={{ fontSize: 16, fontWeight: "bold", color: "#007fff" }}
+              style={{ fontSize: 16, fontWeight: "bold", color: "#BB6464" }}
             >
               {route.params.startDate}
             </Text>
@@ -146,7 +146,7 @@ console.log('Difference in Days:', differenceInDays);
               Check Out
             </Text>
             <Text
-              style={{ fontSize: 16, fontWeight: "bold", color: "#007fff" }}
+              style={{ fontSize: 16, fontWeight: "bold", color: "#BB6464" }}
             >
               {route.params.endDate}
             </Text>
@@ -156,7 +156,7 @@ console.log('Difference in Days:', differenceInDays);
           <Text style={{ fontSize: 16, fontWeight: 600, marginBottom: 3 }}>
             Guests
           </Text>
-          <Text style={{ fontSize: 16, fontWeight: "bold", color: "#007fff" }}>
+          <Text style={{ fontSize: 16, fontWeight: "bold", color: "#BB6464" }}>
             {route.params.adults} adults{" "}
             {route.params.children} children
           </Text>
@@ -165,14 +165,14 @@ console.log('Difference in Days:', differenceInDays);
           <Text style={{ fontSize: 16, fontWeight: 600, marginBottom: 3 }}>
             Price
           </Text>
-          <Text style={{ fontSize: 16, fontWeight: "bold", color: "#007fff" }}>
+          <Text style={{ fontSize: 16, fontWeight: "bold", color: "#BB6464" }}>
             Rs. {route.params.price * differenceInDays * (route.params.adults / 2)}
           </Text>
         </View>
         <Pressable
           onPress={confirmBooking}
           style={{
-            backgroundColor: "#003580",
+            backgroundColor: "#54BAB9",
             width: 120,
             padding: 5,
             marginHorizontal: 12,

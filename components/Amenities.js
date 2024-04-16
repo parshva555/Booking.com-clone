@@ -44,7 +44,7 @@ const Amenities = () => {
           <View
             style={{
               margin: 10,
-              backgroundColor: "#007FFF",
+              backgroundColor: "#BB6464",
               paddingHorizontal: 11,
               paddingVertical: 5,
               borderRadius: 25,

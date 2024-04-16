@@ -17,10 +17,10 @@ const BookingScreen = () => {
         fontSize: 20,
         fontWeight: "bold",
         color: "white",
-        marginLeft: 115,
+        marginLeft: 130,
       },
       headerStyle: {
-        backgroundColor: "#003580",
+        backgroundColor: "#BB6464",
         height: 110,
         borderBottomColor: "transparent",
         shadowColor: "transparent",
@@ -104,7 +104,7 @@ const BookingScreen = () => {
     <SafeAreaView>
       <ScrollView>
         {loading ? (
-          <ActivityIndicator size="large" color="#0000ff" />
+          <ActivityIndicator size="large" color="#BB6464" />
         ) : (
           bookings.length > 0 ? (
             bookings.map((item, index) => (
@@ -179,7 +179,7 @@ const BookingScreen = () => {
                       Check In
                     </Text>
                     <Text
-                        style={{ fontSize: 16, fontWeight: "bold", color: "#007fff" }}
+                        style={{ fontSize: 16, fontWeight: "bold", color: "#BB6464" }}
                       >
                         {new Date(item.bookings[0].checkIn).toLocaleDateString('en-GB')}
                     </Text>
@@ -190,7 +190,7 @@ const BookingScreen = () => {
                       Check Out
                     </Text>
                     <Text
-                        style={{ fontSize: 16, fontWeight: "bold", color: "#007fff" }}
+                        style={{ fontSize: 16, fontWeight: "bold", color: "#BB6464" }}
                       >
                         {new Date(item.bookings[0].checkOut).toLocaleDateString('en-GB')}
                     </Text>
@@ -199,7 +199,7 @@ const BookingScreen = () => {
                 <View style={{ borderBottomWidth: 1, borderBottomColor: 'black' }} />
 
                 <View style={{marginLeft:13, marginTop:10}}>
-                <Text style={{fontSize:16, fontWeight:"bold",color:'#007fff' }}>Rs.{item.bookings[0].totalCost * item.bookings[0].adultCount/2} per Night for {item.bookings[0].adultCount /2} rooms  </Text>
+                <Text style={{fontSize:16, fontWeight:"bold",color:'#BB6464' }}>Rs.{item.bookings[0].totalCost * item.bookings[0].adultCount/2} per Night for {item.bookings[0].adultCount /2} rooms  </Text>
                   </View>
               </View>
             ))

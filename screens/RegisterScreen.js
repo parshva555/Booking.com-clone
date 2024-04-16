@@ -88,7 +88,7 @@ const RegisterScreen = () => {
             marginTop: 100,
           }}
         >
-          <Text style={{ color: "#003580", fontSize: 17, fontWeight: "700" }}>
+          <Text style={{ color: "#009688", fontSize: 17, fontWeight: "700" }}>
             Register
           </Text>
 
@@ -182,7 +182,7 @@ const RegisterScreen = () => {
           onPress={register}
           style={{
             width: 200,
-            backgroundColor: "#003580",
+            backgroundColor: "#009688",
             padding: 15,
             borderRadius: 7,
             marginTop: 50,

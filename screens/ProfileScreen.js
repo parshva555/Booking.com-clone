@@ -21,10 +21,10 @@ const ProfileScreen = () => {
         fontSize: 20,
         fontWeight: "bold",
         color: "white",
-        marginLeft: 115,
+        marginLeft:150
       },
       headerStyle: {
-        backgroundColor: "#003580",
+        backgroundColor: "#BB6464",
         height: 110,
         borderBottomColor: "transparent",
         shadowColor: "transparent",
@@ -77,6 +77,7 @@ const ProfileScreen = () => {
   };
   useEffect(() => {
     fetchUserDetails();
+
   }, []);
 
   return (
@@ -130,7 +131,7 @@ const styles = StyleSheet.create({
   itemContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#0039a6',
+    backgroundColor: '#BB6464',
     marginVertical: 10,
     marginHorizontal: 4,
     paddingVertical: 14,
@@ -160,10 +161,10 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     color: 'white',
-    marginLeft: 10,
+    marginLeft: 20,
   },
   updateButton: {
-    marginLeft:100,
+    marginLeft:90,
     width:200,
     backgroundColor: '#009688',
     alignItems: 'center',
