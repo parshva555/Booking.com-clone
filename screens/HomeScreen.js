@@ -29,10 +29,8 @@ import {
 
 const HomeScreen = () => {
   const navigation = useNavigation();
-  const [destination, setDestination] = useState('');
   const [selectedDates, setSelectedDates] = useState();
   const route = useRoute();
-  const [rooms, setRooms] = useState(1);
   const [adults, setAdults] = useState(2);
   const [children, setChildren] = useState(0);
   const [modalVisible, setModalVisible] = useState(false);
@@ -98,7 +96,6 @@ const HomeScreen = () => {
     }
     if(route.params.input && selectedDates){
       navigation.navigate("Places",{
-        rooms:rooms,
         adults:adults,
         children:children,
         selectedDates:selectedDates,
@@ -187,8 +184,6 @@ const HomeScreen = () => {
                 mode={"range"}
               />
             </Pressable>
-
-            {/* Rooms and Guests */}
             <Pressable
               onPress={() => setModalVisible(!modalVisible)}
               style={{
@@ -204,7 +199,7 @@ const HomeScreen = () => {
               <Ionicons name="person-outline" size={24} color="black" />
               <TextInput
                 placeholderTextColor="red"
-                placeholder={`${rooms} Room - ${adults} Adults - ${children} Children`}
+                placeholder={`${adults} Adults - ${children} Children`}
               />
             </Pressable>
 
@@ -274,7 +269,7 @@ const HomeScreen = () => {
             />
           </ModalFooter>
         }
-        modalTitle={<ModalTitle title="Select rooms and guests" />}
+        modalTitle={<ModalTitle title="Select guests" />}
         modalAnimation={
           new SlideAnimation({
             slideFrom: "bottom",
@@ -290,64 +285,7 @@ const HomeScreen = () => {
             height: 310,
           }}
         >
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "space-between",
-            }}
-          >
-            <Text style={{fontSize:16,fontWeight:500}}>Rooms</Text>
-            <Pressable
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                gap: 10,
-                marginVertical: 15,
-              }}
-            >
-              <Pressable
-              onPress={() => setRooms(Math.max(1,rooms-1))}
-                style={{
-                  width: 26,
-                  height: 26,
-                  borderRadius: 13,
-                  borderColor: "#BEBEBE",
-                  backgroundColor: "#E0E0E0",
-                }}
-              >
-                <Text
-                  style={{
-                    textAlign: "center",
-                    fontSize: 17,
-                    fontWeight: 600,
-                    paddingHorizontal: 6,
-                  }}
-                >
-                  -
-                </Text>
-              </Pressable>
-              <Pressable>
-                <Text>{rooms}</Text>
-              </Pressable>
-              <Pressable
-              onPress={() => setRooms((c) => c+1)}
-              style={{
-                  width: 26,
-                  height: 26,
-                  borderRadius: 13,
-                  borderColor: "#BEBEBE",
-                  backgroundColor: "#E0E0e0",
-                }}>
-                <Text style={{
-                    textAlign: "center",
-                    fontSize: 17,
-                    fontWeight: 500,
-                    paddingHorizontal: 6,
-                  }}>+</Text>
-              </Pressable>
-            </Pressable>
-          </View>
+
           <View
             style={{
               flexDirection: "row",
