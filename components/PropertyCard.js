@@ -102,7 +102,7 @@ const PropertyCard = ({
             </View>
           </View>
           <Text style={{ marginTop: 4, fontSize: 15, fontWeight: 500 }}>
-            Price for 1 Night and {adults} adults
+            Price for {differenceInDays} Night and {adults} adults
           </Text>
           <View
             style={{
