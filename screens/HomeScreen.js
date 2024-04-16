@@ -44,7 +44,7 @@ const HomeScreen = () => {
         color: "white",
       },
       headerStyle: {
-        backgroundColor: "#003580",
+        backgroundColor: "#BB6464",
         height: 110,
         borderBottomColor: "transparent",
         shadowColor: "transparent",
@@ -71,15 +71,17 @@ const HomeScreen = () => {
 
   const customButton = (onConfirm) => {
     return (
-      <Button
-        onPress={onConfirm}
-        style={{
-          container: { width: "80%", marginHorizontal: "3%" },
-          text: { fontSize: 20 },
-        }}
-        primary
-        title="Submit"
-      />
+    <Button
+      onPress={onConfirm}
+      style={{
+        backgroundColor: "red",
+        width: "80%",
+        marginHorizontal: "3%",
+        fontSize: 20,
+      }}
+      title="Submit"
+    />
+
     );
   };
 
@@ -165,7 +167,7 @@ const HomeScreen = () => {
                     marginRight: "auto",
                   },
                   headerStyle: {
-                    backgroundColor: "#0035ab",
+                    backgroundColor: "#54BAB9",
                   },
                   contentText: {
                     fontSize: 15,
@@ -174,7 +176,7 @@ const HomeScreen = () => {
                     marginRight: "auto",
                   },
                 }}
-                selectedBgColor="#0047AB"
+                selectedBgColor="#54BAB9"
                 customButton={(onConfirm) => customButton(onConfirm)}
                 onConfirm={(startDate, endDate) =>
                   setSelectedDates(startDate, endDate)
@@ -211,7 +213,7 @@ const HomeScreen = () => {
                 borderColor: "#FFC72C",
                 borderWidth: 2,
                 paddingVertical: 15,
-                backgroundColor: "#2a52be",
+                backgroundColor: "#54BAB9",
               }}
             >
               <Text
@@ -262,8 +264,8 @@ const HomeScreen = () => {
               text="Apply"
               style={{
                 marginBottom: 20,
-                color: "white",
-                backgroundColor: "#003580",
+                color:"white",
+                backgroundColor: "#54BAB9",
               }}
               onPress={() => setModalVisible(!modalVisible)}
             />

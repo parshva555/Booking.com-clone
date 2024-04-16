@@ -117,7 +117,7 @@ const PropertyCard = ({
             </Text>
           </View>
           <View  style={{
-                  backgroundColor: "#6082b6",
+                  backgroundColor: "#54BAB9",
                   paddingVertical: 2,
                   borderRadius: 5,
                   marginTop:2,

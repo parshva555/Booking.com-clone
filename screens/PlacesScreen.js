@@ -85,7 +85,7 @@ const PlacesScreen = () => {
         marginLeft: 115,
       },
       headerStyle: {
-        backgroundColor: "#003580",
+        backgroundColor: "#BB6464",
         height: 110,
         borderBottomColor: "transparent",
         shadowColor: "transparent",
