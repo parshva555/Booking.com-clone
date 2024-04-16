@@ -20,7 +20,7 @@ const PropertyInfoScreen = () => {
 
   const handleScroll = (event) => {
     const scrollPosition = event.nativeEvent.contentOffset.y;
-    if (scrollPosition > 60) {
+    if (scrollPosition > 30) {
       setShowButton(true);
     } else {
       setShowButton(false);

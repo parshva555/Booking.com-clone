@@ -7,7 +7,7 @@ const SearchResults = ({ cities, input, setInput }) => {
   return (
     <View style={{ padding: 10 }}>
       <FlatList data={cities} renderItem={({ item }) => {
-        if (item.toLowerCase().includes(input.toLowerCase())) {
+        if (item.toLowerCase().startsWith(input.toLowerCase())) {
           if (input === "") {
             return null;
           }

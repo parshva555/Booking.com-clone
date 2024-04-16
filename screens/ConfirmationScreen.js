@@ -2,7 +2,6 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import React, { useLayoutEffect } from "react";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { MaterialIcons } from "@expo/vector-icons";
-import { useDispatch } from 'react-redux'
 import axios from "axios";
 
 const ConfirmationScreen = () => {
@@ -26,8 +25,6 @@ const ConfirmationScreen = () => {
       },
     });
   }, []);
-
-  const dispatch = useDispatch();
 
   const confirmBooking = async () => {
     const res = await fetch(`https://booking-backend-1-pmsm.onrender.com/api/users/user-details`, {

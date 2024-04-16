@@ -86,7 +86,6 @@ const BookingScreen = () => {
       const data = await response.json();
       setBookings(data);
       setLoading(false);
-			showData();
     } catch (error) {
       console.error(error);
       setLoading(false);
