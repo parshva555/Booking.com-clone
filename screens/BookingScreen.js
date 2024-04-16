@@ -178,19 +178,20 @@ const BookingScreen = () => {
                       Check In
                     </Text>
                     <Text
-                      style={{ fontSize: 16, fontWeight: "bold", color: "#007fff" }}
-                    >
-                      {item.startDate}
+                        style={{ fontSize: 16, fontWeight: "bold", color: "#007fff" }}
+                      >
+                        {new Date(item.bookings[0].checkIn).toLocaleDateString('en-GB')}
                     </Text>
+
                   </View>
                   <View>
                     <Text style={{ fontSize: 16, fontWeight: 600, marginBottom: 3 }}>
                       Check Out
                     </Text>
                     <Text
-                      style={{ fontSize: 16, fontWeight: "bold", color: "#007fff" }}
-                    >
-                      {item.endDate}
+                        style={{ fontSize: 16, fontWeight: "bold", color: "#007fff" }}
+                      >
+                        {new Date(item.bookings[0].checkOut).toLocaleDateString('en-GB')}
                     </Text>
                   </View>
                 </View>
